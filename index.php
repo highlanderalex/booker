@@ -1,6 +1,7 @@
 <?php
 	
 	require_once ('libs/func/func.php');
+	require_once ('config/config.php');
 	session_start();
 	
 	$view = empty($_GET['view']) ? 'login' : $_GET['view'];
