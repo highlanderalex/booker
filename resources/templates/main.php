@@ -18,7 +18,7 @@
 	<table align="center" width="980" cellpadding="0" cellspacing="0" border="0" id="main-table">
 	<tr>
 		<td id="menu">
-		<div class="lk">Welcome, <strong>Alex!</strong> <a href="index.php?view=exit_cab">Exit</a></div>
+		<div class="lk">Welcome, <strong>Alex!</strong> <a href="index.php?view=logout">Exit</a></div>
 		<div class="menu" align="right"><a href="index.php?view=">Room1</a> <a href="index.php?view=">Room2</a> <a href="index.php?view=">Room3</a></div>
 		</td>
 	</tr>
@@ -28,10 +28,10 @@
 			$('#slider').nivoSlider();
 		});
 	</script>
-<? if ($view == 'index')
-{ 
+<? //if ($view == 'index')
+//{ 
 ?>
-	<tr>
+	<!--tr>
 		<td id="header">
 			<div id="slider" class="nivoSlider">
 				<img src="resources/userfiles/header.png" alt="" />
@@ -39,9 +39,9 @@
 				<img src="resources/userfiles/header3.png" alt="" />
 			</div>
 		</td>
-	</tr>
+	</tr-->
 <?
-}
+//}
 ?>
 	<tr>
 		<td id="content">

@@ -16,8 +16,52 @@
 		}
 		
 		public function index()
-		{		
-			
+		{	
+			date_default_timezone_set(TIMEZONE);
+			//session_destroy();
+			if ($_POST['mon'])
+			{
+				$_SESSION['type_week'] = $_POST['type_week']; 
+			}
+			if ($_POST['sun'])
+			{
+				$_SESSION['type_week'] = $_POST['type_week']; 
+			}
+			if (!isset($_SESSION['type_week']))
+			{
+				$_SESSION['type_week'] = 0; 
+			}
+			if (!isset($_SESSION['month']) && !isset($_SESSION['year']))
+			{
+				$_SESSION['month'] = date('m'); 
+				$_SESSION['year'] = date('y'); 
+			}
+
+			if ($_POST['prev'])
+			{
+				if($_SESSION['month'] == 1)
+				{
+					$_SESSION['month'] = 12;
+					$_SESSION['year'] -= 1;   
+				}
+				else
+				{
+				   $_SESSION['month'] -= 1;
+				} 
+			}
+			if ($_POST['next'])
+			{
+				if($_SESSION['month'] == 12)
+				{
+					$_SESSION['month'] = 1;
+					$_SESSION['year'] += 1;    
+				}
+				else
+				{
+					$_SESSION['month'] += 1;
+				} 
+			}
+			$this->view->calendar = drawCalendar($_SESSION['month'], $_SESSION['year'],$_SESSION['type_week']);
 			$this->view->render('index');
 		}
 		
@@ -93,7 +137,7 @@
 			$this->view->render('successreg');
 		}
 		
-		public function destroy()
+		public function logout()
 		{
 			session_destroy();
 			//sessionDestroy();

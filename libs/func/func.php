@@ -65,6 +65,77 @@
 			unset($_SESSION['total_items']);
 			unset($_SESSION['total_price']);
 		}
+		
+		function drawCalendar($month,$year, $type)
+		{
+			 $calendar = '<div style="width:800px;margin:0 auto;"><table cellpadding="0" cellspacing="0" class="calendar">';
+			  if ($type)
+			  {
+				  $headings = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday', 'Sunday');
+				  $running_day = date('w',mktime(0,0,0,$month,1,$year));
+				  //$running_day = $running_day - 1;
+				  if($running_day == 0)
+				  {
+					$running_day = 6;
+				  }
+				  else 
+				  {
+					$running_day = $running_day - 1;
+				  }
+			  }
+			  else
+			  {
+				  $headings = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
+				  $running_day = date('w',mktime(0,0,0,$month,1,$year));
+			  }
+			  $calendar.= '<tr class="calendar-row"><td class="calendar-day-head">'.implode('</td><td class="calendar-day-head">',$headings).'</td></tr>';
+			  $days_in_month = date('t',mktime(0,0,0,$month,1,$year));
+			  $days_in_this_week = 1;
+			  $day_counter = 0;
+			  $dates_array = array();
+
+			  $calendar.= '<tr class="calendar-row">';
+
+			  for( $x = 0; $x < $running_day; $x++)
+			  {
+				$calendar.= '<td class="calendar-day-np">&nbsp;</td>';
+				$days_in_this_week++;
+			  }
+
+			  for($list_day = 1; $list_day <= $days_in_month; $list_day++)
+			  {
+					$calendar.= '<td class="calendar-day">';
+					$calendar.= '<div class="day-number">'.$list_day.'</div>';
+					 // $calendar.= '<a href="#" style="color:#062134">10.30-18.00</a>' . '<br /><a href="#" style="color:#062134">10.30-18.00</a>';
+					  /** ЗДЕСЬ МОЖНО СДЕЛАТЬ MySQL ЗАПРОС К БАЗЕ ДАННЫХ! ЕСЛИ НАЙДЕНО СОВПАДЕНИЕ ДАТЫ СОБЫТИЯ С ТЕКУЩЕЙ - ВЫВОДИМ! **/
+					$calendar.= str_repeat('<p>&nbsp;</p>',2);
+					  
+					$calendar.= '</td>';
+					if( $running_day == 6 )
+					{
+						$calendar.= '</tr>';
+						if(($day_counter+1) != $days_in_month)
+						{
+							$calendar.= '<tr class="calendar-row">';
+						}
+						$running_day = -1;
+						$days_in_this_week = 0;
+					}
+					$days_in_this_week++; $running_day++; $day_counter++;
+			  }
+
+			  if($days_in_this_week < 8 && $days_in_this_week != 1)
+			  {
+					for($x = 1; $x <= (8 - $days_in_this_week); $x++)
+					{
+						$calendar.= '<td class="calendar-day-np">&nbsp;</td>';
+					}
+			  }
+
+			  $calendar.= '</tr>';
+			  $calendar.= '</table></div>';
+			  return $calendar;
+		}
 	
 	
 	
