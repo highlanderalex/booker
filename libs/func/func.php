@@ -66,7 +66,7 @@
 			unset($_SESSION['total_price']);
 		}
 		
-		function drawCalendar($month,$year, $type)
+		function drawCalendar($month,$year, $type, $arr)
 		{
 			 $calendar = '<div style="width:800px;margin:0 auto;"><table cellpadding="0" cellspacing="0" class="calendar">';
 			  if ($type)
@@ -104,12 +104,17 @@
 
 			  for($list_day = 1; $list_day <= $days_in_month; $list_day++)
 			  {
-					$calendar.= '<td class="calendar-day">';
-					$calendar.= '<div class="day-number">'.$list_day.'</div>';
-					 // $calendar.= '<a href="#" style="color:#062134">10.30-18.00</a>' . '<br /><a href="#" style="color:#062134">10.30-18.00</a>';
-					  /** ЗДЕСЬ МОЖНО СДЕЛАТЬ MySQL ЗАПРОС К БАЗЕ ДАННЫХ! ЕСЛИ НАЙДЕНО СОВПАДЕНИЕ ДАТЫ СОБЫТИЯ С ТЕКУЩЕЙ - ВЫВОДИМ! **/
-					$calendar.= str_repeat('<p>&nbsp;</p>',2);
-					  
+					$calendar.= '<td class="calendar-day" valign="top">';
+                    $calendar.= '<div class="day-number">'.$list_day.'</div>';
+                    foreach($arr as $item)
+                    {
+                        $curr = date('Y-m-d', mktime(0, 0, 0 , $month, $list_day, $year));
+                        if($item['date'] == $curr)
+                        {
+                            $calendar.= '<a href="#" style="color:#062134" title="' . $item['title'] . '">' . substr($item['startTime'], 0, -3) . '-' . substr($item['endTime'], 0, -3) . '</a><br />';
+                        }
+                    }
+ 				    $calendar.= str_repeat('<p>&nbsp;</p>',2);
 					$calendar.= '</td>';
 					if( $running_day == 6 )
 					{

@@ -1,8 +1,8 @@
 <?php
 	define ("EMAIL","highlanderalex@rambler.ru");
 	define ("HOST","localhost");
-	define ("DBNAME","booking");
+	define ("DBNAME","user4");
 	define ("DBDRIVER","mysql");
-	define ("LOGIN","root");
-	define ("PASS","");
+	define ("LOGIN","user4");
+	define ("PASS","tuser4");
 	define ("TIMEZONE","Europe/Kiev");

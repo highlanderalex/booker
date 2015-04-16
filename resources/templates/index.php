@@ -23,6 +23,7 @@
 </div>
 <div style="margin-top:50px;"><?=$this->calendar;?></div>
 
+
 <div style="width:200px;margin:0 auto; margin-top:20px;margin-bottom:50px;">
 <p><a href="index.php?view=addEvent" style="color:#062134;font-size:1.5em;border:1px solid #062134;text-decoration:none">BookIt</a>&nbsp;&nbsp;&nbsp;
 <a href="index.php?view=adminPanel" style="color:#062134;font-size:1.5em;border:1px solid #062134;text-decoration:none">ListEmployee</a></p>

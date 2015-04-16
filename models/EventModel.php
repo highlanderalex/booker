@@ -11,7 +11,7 @@
         * * @method returninsertOrder: Insert new order into orders
         * */
 
-    class OrderModel 
+    class EventModel 
 	{
 		private $inst;
 		
@@ -27,18 +27,12 @@
         * * @return: Retutn assoc array of user orders
         * */
 
-		public function returnOrders($id)
+		public function returnEvents($idRoom)
         {
-			$arr['where'] = $id;
-            $res = $this->inst->Select('o.id, o.datetime, p.pay, s.status')
-						      ->From('orders o')
-							  ->Join('payment p')
-							  ->On('o.idPay = p.id')
-							  ->Join('status s')
-							  ->On('o.idStatus = s.id')
-							  ->Where('idUser=')
-							  ->Order('o.datetime')
-							  ->Desc()
+			$arr['where'] = $idRoom;
+            $res = $this->inst->Select('*')
+						      ->From('b_events')
+							  ->Where('idRoom=')
 							  ->Execute($arr);
 			$res = $this->inst->dbResultToArray($res);
             return $res; 

@@ -60,8 +60,10 @@
 				{
 					$_SESSION['month'] += 1;
 				} 
-			}
-			$this->view->calendar = drawCalendar($_SESSION['month'], $_SESSION['year'],$_SESSION['type_week']);
+            }
+            $event = new EventController();
+            $arr = $event->getEvents(1);
+			$this->view->calendar = drawCalendar($_SESSION['month'], $_SESSION['year'],$_SESSION['type_week'], $arr);
 			$this->view->render('index');
 		}
 		

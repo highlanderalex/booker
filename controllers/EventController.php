@@ -1,6 +1,6 @@
 <?php
     
-	require_once (dirname(__FILE__).'/../models/PurchaseModel.php');
+	require_once (dirname(__FILE__).'/../models/EventModel.php');
     
     /* Class PurchaseController for PurchaseModel
         * *
@@ -10,13 +10,13 @@
         * * @method addPurchases: Return count of change rows
         * */
 
-    class PurchaseController 
+    class EventController 
 	{
 		private $model;
 		
 		public function __construct()
 		{
-			$this->model = new PurchaseModel();
+			$this->model = new EventModel();
 		}
 		
     /* addPurchases method
@@ -39,9 +39,9 @@
         * * @return: Retutn assoc array of purchases or empty
         * */
 
-		public function getPurchases($id)
+		public function getEvents($idRoom)
         {
-            $res = $this->model->returnPurchases($id);
+            $res = $this->model->returnEvents($idRoom);
             return $res;
         }
     }
