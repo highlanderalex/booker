@@ -72,7 +72,7 @@
             
             if ($this->error == '')
 		    {
-			   $this->arr['password'] = md5($this->arr['password']);
+			   //$this->arr['password'] = md5($this->arr['password']);
 			    return $this->arr;
 		    }
 		    else

@@ -187,6 +187,12 @@
 				self::$str .= ' DESC';
 				return self::$instance;
 			}
+            
+            public static function Asc()
+			{
+				self::$str .= ' ASC';
+				return self::$instance;
+			}
 			
 			public static function Limit($num)
 			{

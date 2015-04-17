@@ -9,7 +9,7 @@
        * * @method returnAuthors: The return assoc array of authors or empty array
        * */
 
-    class AuthorModel 
+    class RoomModel 
 	{
 		private $inst;
 		
@@ -25,14 +25,46 @@
             * * @return: Retutn assoc array of authors or empty
             * */
 
-		public function returnAuthors()
+		public function returnRooms()
         {
-            $res = $this->inst->Select('DISTINCT book_author.author_id, authors.name')
-						      ->From('book_author')
-							  ->InnerJoin('authors')
-							  ->On('book_author.author_id=authors.id')
+            $res = $this->inst->Select('idRoom, name')
+						      ->From('b_rooms')
 							  ->Execute();
 			$res = $this->inst->dbResultToArray($res);
+            return $res; 
+        }
+        
+        public function returnDefaultRoom()
+        {
+            $res = $this->inst->Select('idRoom, name')
+                              ->From('b_rooms')
+                              ->Order('idRoom')
+                              ->Asc()
+                              ->Limit(1)
+							  ->Execute();
+			$res = $this->inst->dbLineArray($res);
+            return $res; 
+        }
+        
+        public function returnRoom($id)
+        {
+            $arr['where'] = $id;
+            $res = $this->inst->Select('idRoom, name')
+                              ->From('b_rooms')
+                              ->Where('idRoom=')
+							  ->Execute($arr);
+			$res = $this->inst->dbLineArray($res);
+            return $res; 
+        }
+
+        public function checkIdRoom($id)
+        {
+            $arr['where'] = $id;
+            $res = $this->inst->Select('idRoom')
+                              ->From('b_rooms')
+                              ->Where('idRoom=')
+							  ->Execute($arr);
+			$res = $this->inst->dbCount($res);
             return $res; 
         }
 	}

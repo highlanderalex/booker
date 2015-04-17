@@ -61,8 +61,42 @@
 					$_SESSION['month'] += 1;
 				} 
             }
+            $rooms = new RoomController();
+            $this->view->linkRooms = $rooms->getRooms();
+            if (isset($_GET['idRoom']))
+            {
+                //check id
+                $id = $_GET['idRoom'];
+                if (checkId($id))
+                {
+                    if ($rooms->checkId($id))
+                    {
+                        $nameRoom = $rooms->getRoom($id);
+                        $_SESSION['idRoom'] = $id;
+                        $_SESSION['nameRoom'] = $nameRoom['name'];
+                    }
+                    else
+                    {
+			            $this->view->render('404');
+                    }
+                }
+                else
+                {
+			        $this->view->render('404');
+                }
+
+            }
+            else
+            {    
+                if (!isset($_SESSION['idRoom']))
+                {
+                    $defaultRoom = $rooms->getDefaultRoom();
+                    $_SESSION['idRoom'] = $defaultRoom['idRoom'];
+                    $_SESSION['nameRoom'] = $defaultRoom['name'];
+                }
+            }
             $event = new EventController();
-            $arr = $event->getEvents(1);
+            $arr = $event->getEvents($_SESSION['idRoom']);
 			$this->view->calendar = drawCalendar($_SESSION['month'], $_SESSION['year'],$_SESSION['type_week'], $arr);
 			$this->view->render('index');
 		}
@@ -84,8 +118,9 @@
 					if($user->checkAuth($data))
 					{
 						$datauser = $user->dataUser($data);
-						$_SESSION['id'] = $datauser['id'];
-						$_SESSION['user'] = $datauser['name'];
+						$_SESSION['idUser'] = $datauser['idUser'];
+						$_SESSION['nameUser'] = $datauser['name'];
+						$_SESSION['statusUser'] = $datauser['status'];
 						redirect('index');
 					}
 					else

@@ -50,8 +50,8 @@
         {
 			$arr['where'] = $data['email'];
 			$arr['and'] = $data['password'];
-            $res = $this->inst->Select('COUNT(id)')
-						      ->From('users')
+            $res = $this->inst->Select('COUNT(idUser)')
+						      ->From('b_employees')
 							  ->Where('email=')
 							  ->I('password=')
 							  ->Execute($arr);
@@ -69,8 +69,8 @@
         {
 			$arr['where'] = $data['email'];
 			$arr['and'] = $data['password'];
-            $res = $this->inst->Select('id, name')
-						      ->From('users')
+            $res = $this->inst->Select('idUser, name, status')
+						      ->From('b_employees')
 							  ->Where('email=')
 							  ->I('password=')
 							  ->Execute($arr);
