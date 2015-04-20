@@ -34,6 +34,12 @@
             return $res;
         }
 		
+		public function checkDataUser($idUser, $email)
+        {
+            $res = $this->model->returnCheckData($idUser, $email);
+            return $res;
+        }
+		
     /* checkAuth method
         * *
         * *
@@ -60,6 +66,12 @@
             return $res;
         }
 		
+		public function getUsers()
+        {
+            $res = $this->model->returnUsers();
+            return $res;
+        }
+		
     /* insertDb method
         * *
         * *
@@ -70,6 +82,18 @@
 		public function insertDb($data)
         {
             $res = $this->model->insertDb($data);
+            return $res;
+        }
+		
+		public function updateUser($data)
+        {
+            $res = $this->model->updateUser($data);
+            return $res;
+        }
+		
+		public function deleteUser($idUser)
+        {
+            $res = $this->model->deleteUser($idUser);
             return $res;
         }
 		

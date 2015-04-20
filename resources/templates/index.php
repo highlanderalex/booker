@@ -1,4 +1,4 @@
-<div style="width:500px;margin:0 auto;margin-top:50px;padding-bottom:10px;">
+<div style="width:650px;margin:0 auto;margin-top:30px;padding-bottom:10px;">
     <div style="float:left; font-size:1.8em;margin-left:10px;margin-right:10px;"><?= $_SESSION['nameRoom'];?></div>
     <div style="float:left;">
 		<form action="index.php?view=index" method="post">
@@ -21,19 +21,21 @@
 		<input type="submit" name="next" value=">>" class="btn btn-default">
 		</form>
 	</div>
-</div>
-<div style="margin-top:50px;"><?=$this->calendar;?></div>
-
-
-<div style="width:200px;margin:0 auto; margin-top:20px;margin-bottom:50px;">
-<p><a href="index.php?view=addEvent" style="color:#062134;font-size:1.5em;border:1px solid #062134;text-decoration:none">BookIt</a>&nbsp;&nbsp;&nbsp;
+	
+	<div style="float:left;margin-left:10px;">
+<a href="index.php?view=addEvent" style="text-decoration:none"><button class="btn btn-primary">BookIt</button></a>&nbsp;
 <?php
     if ($_SESSION['statusUser'] == 1)
     {
 ?>
-<a href="index.php?view=adminPanel" style="color:#062134;font-size:1.5em;border:1px solid #062134;text-decoration:none">ListEmployee</a>
+<a href="index.php?view=admin" style="text-decoration:none"><button class="btn btn-primary">ListEmployee</button></a>
 <?php
     }
 ?>
-</p>
 </div>
+</div>
+<div class="cal" style="display:none; width:800px; margin:0 auto;margin-top:30px;"><img src="resources/img/<?=date('F', mktime(0,0,0, $_SESSION['month']));?>.jpg"></div>
+<div class="cal" style="display:none;"><?=$this->calendar;?></div>
+
+
+

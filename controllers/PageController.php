@@ -114,6 +114,7 @@
 				$data = $form->validData();
 				if (is_array($data))
 				{
+					$data['password'] = hashPass($data['password']);
 					$user = new UserController();
 					if($user->checkAuth($data))
 					{
@@ -133,31 +134,40 @@
 					$this->view->error = $data;
 				}
 			}
-			$this->view->render('login');
+			if (isset($_SESSION['idUser']))
+			{
+				redirect('index');
+			} 
+			else
+			{
+				$this->view->render('login');
+			}
 		}
 		
 		public function registration()
 		{
+			checkStatusUser();
 			if (isset($_POST['registration']))
 			{
                 $form = new ValidForm($_POST);
 				$data = $form->validData();
                 if (is_array($data))
 				{
+					$data['password'] = hashPass($data['password']);
 					$newuser = new UserController();
 					if($newuser->checkEmail($data['email']))
 					{
-						$this->view->error = "Такой email уже зарегистрирован в базе<br />";
+						$this->view->error = "This email exist yet<br />";
 					}
 					else
 					{
 						if($newuser->insertDb($data))
 						{
-							redirect('successreg');
+							$this->view->error = "New user success add<br />";
 						}
 						else
 						{
-							$this->view->error = "Ошибка добавления в базу<br />";
+							$this->view->error = "Error add into database<br />";
 						}
 					}
 				}
@@ -181,19 +191,45 @@
 			redirect('login');
 		}
 		
-		public function adminPanel()
+		public function admin()
 		{
-			
+			checkStatusUser();
+			if (isset($_POST['updateUser']))
+			{
+				$form = new ValidForm($_POST);
+				$data = $form->validData();
+				if (is_array($data))
+				{
+					$user = new UserController();
+					if($user->checkDataUser($data['idUser'], $data['email']))
+					{
+						$this->view->error = "This email exist yet<br />";
+					}
+					else
+					{
+						$user->updateUser($data);
+						$this->view->error = "User success update<br />";
+					}
+				}
+				else
+				{
+					$this->view->error = $data;
+				}
+			}
+			if (isset($_POST['deleteUser']))
+			{
+				$user = new UserController();
+				$user->deleteUser($_POST['idUser']);
+				$this->view->error = "User success delete<br />";
+			}
+			$employees = new UserController();
+			$this->view->users = $employees->getUsers();
+			$this->view->render('admin');
 		}
 		
-		public function addEvent()
+		public function updateevent()
 		{
-			
-		}
-		
-		public function updateEvent()
-		{
-			
+			$this->view->render('updateevent');
 		}
 		
 		public function delEvent()

@@ -43,7 +43,7 @@
 	</tr>
 	<tr>
 		<td id="content">
-			<? require_once ('resources/templates/'. $view. '.php');?>
+			<div style="min-height:600px;"><? require_once ('resources/templates/'. $view. '.php');?></div>
 			<div class="clear"></div>
 			<div id="bottom-menu">
 				<div align="center">

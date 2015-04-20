@@ -9,7 +9,14 @@
 	   public function render($name) 
 	   {
 			$view = $name;
-			require_once ('resources/templates/main.php');
+			if ($view != 'updateevent')
+			{
+				require_once ('resources/templates/main.php');
+			}
+			else
+			{
+				require_once ('resources/templates/template.php');
+			}
 	   }
 	  
 	}

@@ -111,7 +111,7 @@
                         $curr = date('Y-m-d', mktime(0, 0, 0 , $month, $list_day, $year));
                         if($item['date'] == $curr)
                         {
-                            $calendar.= '<a href="#" style="color:#062134" title="' . $item['title'] . '">' . substr($item['startTime'], 0, -3) . '-' . substr($item['endTime'], 0, -3) . '</a><br />';
+                            $calendar.= '<a href="javascript://" onclick="_open( \'index.php?view=updateevent&id=' . $item['idEvent'] . '\', 500 , 300 );" style="color:#062134" title="' . $item['title'] . '">' . substr($item['startTime'], 0, -3) . '-' . substr($item['endTime'], 0, -3) . '</a><br />';
                         }
                     }
  				    $calendar.= str_repeat('<p>&nbsp;</p>',2);
@@ -140,6 +140,23 @@
 			  $calendar.= '</tr>';
 			  $calendar.= '</table></div>';
 			  return $calendar;
+		}
+		
+		function checkStatusUser()
+		{
+			if( 1 == $_SESSION['statusUser'] )
+			{
+				return;
+			}
+			else
+			{
+				redirect('404');
+			}
+		}
+		
+		function hashPass($pass)
+		{
+			return md5($pass);
 		}
 	
 	

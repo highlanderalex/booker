@@ -1,3 +1,8 @@
+<div style="margin-top:20px;">
+<p align="center">
+<a href="index.php?view=index"><button class="btn btn-default">Calendar</button></a>
+<a href="index.php?view=admin"><button class="btn btn-default">Adminka</button></a>
+</p></div>
 <div style="color:red;width:400px;margin:0 auto;margin-top:10px;"><?=$this->error;?></div>
 <div style="width:400px;margin:0 auto; margin-top:30px;margin-bottom:50px;">
 <form action="index.php?view=registration" method="post">

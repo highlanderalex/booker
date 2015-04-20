@@ -33,6 +33,8 @@
             $res = $this->inst->Select('*')
 						      ->From('b_events')
 							  ->Where('idRoom=')
+							  ->Order('startTime')
+							  ->Asc()
 							  ->Execute($arr);
 			$res = $this->inst->dbResultToArray($res);
             return $res; 

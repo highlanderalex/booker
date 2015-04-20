@@ -33,8 +33,21 @@
         {
 			$arr['where'] = $email;
             $res = $this->inst->Select('COUNT(email) as val')
-						      ->From('users')
+						      ->From('b_employees')
 							  ->Where('email=')
+							  ->Execute($arr);
+			$res = $this->inst->dbCount($res);
+            return $res; 
+        }
+		
+		public function returnCheckData($idUser, $email)
+        {
+			$arr['where'] = $email;
+			$arr['and'] = $idUser;
+            $res = $this->inst->Select('COUNT(email) as val')
+						      ->From('b_employees')
+							  ->Where('email=')
+							  ->I('idUser!=')
 							  ->Execute($arr);
 			$res = $this->inst->dbCount($res);
             return $res; 
@@ -78,6 +91,17 @@
             return $res; 
         }
 		
+		public function returnUsers()
+        {
+            $res = $this->inst->Select('idUser, name, email')
+						      ->From('b_employees')
+							  ->Order('idUser')
+							  ->Desc()
+							  ->Execute();
+			$res = $this->inst->dbResultToArray($res);
+            return $res; 
+        }
+		
     /* returnDiscont method
         * *
         * *
@@ -108,10 +132,37 @@
 			$arr['name'] = $data['name'];
 			$arr['email'] = $data['email'];
 			$arr['password'] = $data['password'];
-			$res = $this->inst->Insert('users')
+			$res = $this->inst->Insert('b_employees')
 						      ->Fields($arr)
 							  ->Values($arr)
 							  ->Execute();
             return $res;
+        }
+		
+		public function updateUser($data)
+        {
+			$name = $data['name'];
+			$email = $data['email'];
+			$arr['where'] = $data['idUser'];
+			$res = $this->inst->Update('b_employees')
+						      ->Set("name='" . $name . "', email='" . $email . "'")
+							  ->Where('idUser=')
+							  ->Execute($arr);
+            return $res;
+        }
+		
+		public function deleteUser($idUser)
+        {
+			$arr['where'] = $idUser;
+            $res = $this->inst->Delete()
+						      ->From('b_employees')
+							  ->Where('idUser=')
+							  ->Limit(1)
+							  ->Execute($arr);
+			$res = $this->inst->Delete()
+						      ->From('b_events')
+							  ->Where('idUser=')
+							  ->Execute($arr);
+            return $res; 
         }
 	}
