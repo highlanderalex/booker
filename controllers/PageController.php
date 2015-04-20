@@ -229,6 +229,16 @@
 		
 		public function updateevent()
 		{
+			if (isset($_POST['updateevent']))
+			{
+				$this->view->error = 'Update';
+			}
+			
+			if (isset($_POST['deleteevent']))
+			{
+				$this->view->error = 'Delete';
+			}
+			
 			$this->view->render('updateevent');
 		}
 		

@@ -1,7 +1,6 @@
 <div style="color:#000;">
 <h4 align="center" style="color:#fff;">B.B. DETAILS</h4>
-<br />
-<div style="color:#red;"><p align="center"><?=$this->error;?></p></div>
+<div style="color:red;"><p align="center"><?=$this->error;?></p></div>
 <form action="index.php?view=updateevent" method="post">
 <table align="center" width="400px" cellpadding="10" cellspacing="10" border="0">
 	<tr>
@@ -54,7 +53,7 @@
 	</tr>
 </table>
 <br />
-<p align="center"><a href="index.php?view=addEvent" style="text-decoration:none"><button class="btn btn-primary">Update</button></a>&nbsp;&nbsp;
-<a href="index.php?view=admin" style="text-decoration:none"><button class="btn btn-primary">Delete</button></a></p>
+<p align="center"><input type="submit" class="btn btn-primary" value="Update" name="updateevent">&nbsp;&nbsp;
+<input type="submit" class="btn btn-primary" value="Delete" name="deleteevent"></p>
 </form>
 </div>
