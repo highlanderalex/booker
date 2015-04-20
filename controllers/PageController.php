@@ -6,7 +6,8 @@
 		
 		public function __construct()
 		{
-			$this->view = new View();
+            $this->view = new View();
+			date_default_timezone_set(TIMEZONE);
 			/*sessionRun();
 			$translate = new Language($_SESSION['lang']);
 			foreach($translate->getTranslate() as $key=>$val)
@@ -17,7 +18,7 @@
 		
 		public function index()
 		{	
-			date_default_timezone_set(TIMEZONE);
+			//date_default_timezone_set(TIMEZONE);
 			//session_destroy();
 			if ($_POST['mon'])
 			{
@@ -163,7 +164,8 @@
 					{
 						if($newuser->insertDb($data))
 						{
-							$this->view->error = "New user success add<br />";
+                            $this->view->error = "New user success add<br />";
+                            unset($_POST);
 						}
 						else
 						{
@@ -237,7 +239,28 @@
 			if (isset($_POST['deleteevent']))
 			{
 				$this->view->error = 'Delete';
-			}
+            }
+            $id = $_GET['id'];
+            $event = new EventController();
+            $this->view->item = $event->getEvent($id);
+            $this->view->item['startTime'] = substr($this->view->item['startTime'], 0, -3);
+            $this->view->item['startHour'] = substr($this->view->item['startTime'], 0, -3);
+            $this->view->item['starMin'] = substr($this->view->item['startTime'], 3);
+            $this->view->item['endTime'] = substr($this->view->item['endTime'], 0, -3);
+            $this->view->item['endHour'] = substr($this->view->item['endTime'], 0, -3);
+            $this->view->item['endMin'] = substr($this->view->item['endTime'], 3);
+            if ($this->view->item['date'] >= date('Y-m-d'))
+            {
+                $this->view->flagDate = true;
+            }
+            else
+            {
+                $this->view->flagDate = false;
+            }
+            $employees = new UserController();
+			$this->view->users = $employees->getUsers();
+           // echo $this->view->item['date']. "<br />"; 
+           // echo  date('Y-m-d');
 			
 			$this->view->render('updateevent');
 		}

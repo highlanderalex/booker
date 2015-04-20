@@ -44,5 +44,11 @@
             $res = $this->model->returnEvents($idRoom);
             return $res;
         }
+        
+        public function getEvent($id)
+        {
+            $res = $this->model->returnEvent($id);
+            return $res;
+        }
     }
 

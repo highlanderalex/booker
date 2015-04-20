@@ -12,7 +12,7 @@
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
 	<meta name="title" content="" />
-	<title>8:00-10:00</title>
+    <title><?=$this->item['startTime'];?>-<?=$this->item['endTime']?></title>
 </head>
 <body bgcolor="#062134">
 	<? require_once ('resources/templates/'. $view. '.php');?>
