@@ -72,6 +72,12 @@
             return $res;
         }
 		
+		public function getUser($id)
+        {
+            $res = $this->model->returnUser($id);
+            return $res;
+        }
+		
     /* insertDb method
         * *
         * *

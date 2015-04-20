@@ -9,13 +9,13 @@
 	   public function render($name) 
 	   {
 			$view = $name;
-			if ($view != 'updateevent')
+			if ($view == 'updateevent' || $view == 'addevent')
 			{
-				require_once ('resources/templates/main.php');
+				require_once ('resources/templates/template.php');
 			}
 			else
 			{
-				require_once ('resources/templates/template.php');
+				require_once ('resources/templates/main.php');
 			}
 	   }
 	  

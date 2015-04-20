@@ -259,15 +259,15 @@
             }
             $employees = new UserController();
 			$this->view->users = $employees->getUsers();
-           // echo $this->view->item['date']. "<br />"; 
-           // echo  date('Y-m-d');
-			
 			$this->view->render('updateevent');
 		}
 		
-		public function delEvent()
+		public function addevent()
 		{
-			
+			$employees = new UserController();
+			$this->view->users = $employees->getUsers();
+			$this->view->item = $employees->getUser($_SESSION['idUser']);
+			$this->view->render('addevent');
 		}
     }
 

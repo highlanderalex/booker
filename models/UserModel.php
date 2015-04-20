@@ -102,6 +102,17 @@
             return $res; 
         }
 		
+		public function returnUser($id)
+        {
+            $arr['where'] = $id;
+			$res = $this->inst->Select('name')
+						      ->From('b_employees')
+							  ->Where('idUser=')
+							  ->Execute($arr);
+			$res = $this->inst->dbLineArray($res);
+            return $res; 
+        }
+		
     /* returnDiscont method
         * *
         * *
