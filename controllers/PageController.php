@@ -264,9 +264,32 @@
 		
 		public function addevent()
 		{
-			$employees = new UserController();
-			$this->view->users = $employees->getUsers();
-			$this->view->item = $employees->getUser($_SESSION['idUser']);
+            $this->view->success = '';
+            if ($_POST['addevent'])
+            {
+                $form = new ValidForm($_POST);
+				$data = $form->validData();
+                if (is_array($data))
+                {
+                    $newevent = new EventController();
+                    $data['idRoom'] = $_SESSION['idRoom'];
+                    $newevent->addNewEvent($data);
+                    $this->view->success = 'Event success add';
+                }
+                else
+                {
+                    $this->view->error = $data;
+                    $employees = new UserController();
+			        $this->view->users = $employees->getUsers();
+			        $this->view->item = $employees->getUser($_SESSION['idUser']);
+                }
+            }
+            else
+            {
+                $employees = new UserController();
+			    $this->view->users = $employees->getUsers();
+			    $this->view->item = $employees->getUser($_SESSION['idUser']);
+            }
 			$this->view->render('addevent');
 		}
     }

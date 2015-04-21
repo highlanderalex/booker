@@ -73,9 +73,15 @@
         * * @return: Return count of changes rows
         * */
 
-		public function insertOrder($arr)
+		public function insertNewEvent($data)
         {
-			$res = $this->inst->Insert('orders')
+            $arr['idUser'] = $data['idUser'];
+            $arr['idRoom'] = $data['idRoom'];
+            $arr['title'] = $data['title'];
+            $arr['startTime'] = $data['startTime'];
+            $arr['endTime'] = $data['endTime'];
+            $arr['date'] = $data['date'];
+			$res = $this->inst->Insert('b_events')
 						      ->Fields($arr)
 							  ->Values($arr)
 							  ->Execute();

@@ -68,11 +68,53 @@
 		                } 
                     }
                 }  
+                
+                if ( 'title' == $key )
+                {
+                    $val = trim(htmlspecialchars($val));
+                    if (empty($val))
+                    {
+                        $this->error .= "Empty notes<br />";
+                    }  
+                }
             }
+            if (isset($this->arr['rec']))
+            {
+                if (($this->arr['rec'] == '0' && $this->arr['num'] != '') ||
+                    ($this->arr['rec'] == '1' && $this->arr['num'] == '') ||
+                    ($this->arr['rec'] == '2' && ($this->arr['num'] == '' || $this->arr['num'] > 2)) || 
+                    ($this->arr['rec'] == '3' && $this->arr['num'] != 1))
+                {
+                    $this->error .= "Error duration<br />";
+                }
+            }
+            if (isset($this->arr['date']))
+            {
+                $this->arr['date'] = strtotime($this->arr['date']);
+                $this->arr['date'] = date('Y-m-d', $this->arr['date']);
+                if ($this->arr['date'] < date('Y-m-d') || 
+                    date('w', strtotime($this->arr['date'])) == 0 ||
+                    date('w', strtotime($this->arr['date'])) == 6)
+                {
+                    $this->error .= "Error date<br />";
+                }
+            }
+
+            if (isset($this->arr['startHour']) && isset($this->arr['startMin']))
+            {
+                $this->arr['startTime'] = $this->arr['startHour'] . ':' . $this->arr['startMin'];
+                $this->arr['endTime'] = $this->arr['endHour'] . ':' . $this->arr['endMin'];
+                //echo date('g:i', strtotime($this->arr['startTime']));  
+                //echo date('g:i', strtotime($this->arr['endTime']));  
+                if (strtotime($this->arr['startTime']) >= strtotime($this->arr['endTime']))
+                {
+                    $this->error .= "Error time<br />";
+                }
+            }
+
             
             if ($this->error == '')
 		    {
-			   //$this->arr['password'] = md5($this->arr['password']);
 			    return $this->arr;
 		    }
 		    else

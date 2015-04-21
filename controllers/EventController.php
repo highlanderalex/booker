@@ -31,6 +31,12 @@
             $res = $this->model->insertPurchases($lastId, $idProduct, $qty, $price);
             return $res;
         }
+
+        public function addNewEvent($data)
+        {
+            $res = $this->model->insertNewEvent($data);
+            return $res;
+        }
 		
     /* getPurchases method
         * *

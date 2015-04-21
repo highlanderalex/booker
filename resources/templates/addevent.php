@@ -1,5 +1,9 @@
 <div style="color:#000;">
 <h4 align="center" style="color:#fff;">Add new event</h4>
+<?php
+    if ( '' == $this->success )
+    {
+?>
 <div style="color:red;"><p align="center"><?=$this->error;?></p></div>
 <form action="index.php?view=addevent" method="post">
 <table align="center" width="400px" cellpadding="10" cellspacing="10" border="0">
@@ -37,8 +41,8 @@
             ?>
                 </select>
 				<select name="typestart">
-					<option value="0" selected>AM</option>
-					<option value="1">PM</option>
+					<option value="AM" selected>AM</option>
+					<option value="PM">PM</option>
 				</select>
             <br />
 			<select name="endHour">
@@ -68,8 +72,8 @@
             ?>
 			</select>
 			<select name="typeend">
-					<option value="0" selected>AM</option>
-					<option value="1">PM</option>
+					<option value="AM" selected>AM</option>
+					<option value="PM">PM</option>
 				</select>
 			<br/>
 		</td>
@@ -108,10 +112,10 @@
 		<td></td>
 		<td>
 			<span style="color:#fff;">Is this to be recurent event?</span><br />
-			<input type="radio" name="rec[]" checked> <span style="color:#fff;">none</span><br />
-			<input type="radio" name="rec[]"> <span style="color:#fff;">weekly</span><br />
-			<input type="radio" name="rec[]"> <span style="color:#fff;">be-weekly</span><br />
-			<input type="radio" name="rec[]"> <span style="color:#fff;">monthly</span><br />
+			<input type="radio" name="rec" value="0" checked> <span style="color:#fff;">none</span><br />
+			<input type="radio" name="rec" value="1"> <span style="color:#fff;">weekly</span><br />
+			<input type="radio" name="rec" value="2"> <span style="color:#fff;">be-weekly</span><br />
+			<input type="radio" name="rec" value="3"> <span style="color:#fff;">monthly</span><br />
 			<input type="number" name="num" max="4" min="1" value=""> <span style="color:#fff;">Duration(max 4 week)</span><br />
 		</td>
 	</tr>
@@ -121,3 +125,13 @@
 
 </form>
 </div>
+<?php
+    }
+    else
+    {
+?>
+    <h6 align="center" style="color:#fff;"><?=$this->success?></h6>
+    <p align="center"><a href="" onclick="closeWin();return false;"><button class="btn btn-primary">Close</button></a></p>
+<?php
+    }
+?>
