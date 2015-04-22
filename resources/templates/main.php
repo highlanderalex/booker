@@ -9,7 +9,7 @@
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
 	<meta name="title" content="" />
-	<title>Calendar</title>
+    <title><?=$this->LANG_calendar;?></title>
 </head>
 <body>
 	<div id="lang">
@@ -29,7 +29,7 @@
             if($_SESSION['idUser'])
             {
         ?>
-            <div class="lk">Welcome, <strong><?=$_SESSION['nameUser'];?></strong> <a href="index.php?view=logout">Exit</a></div>
+            <div class="lk"><?=$this->LANG_welcome;?>&nbsp;<strong><?=$_SESSION['nameUser'];?></strong> <a href="index.php?view=logout"><?=$this->LANG_exit;?></a></div>
         <?php
             }
         ?>

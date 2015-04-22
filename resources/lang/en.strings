@@ -1,27 +1,147 @@
 <?xml version="1.0"?>
-<ISTRINGTABLE ID="joomla" LANG="ru">
+<ISTRINGTABLE ID="joomla" LANG="en">
     <ISTRING>
-        <KEY>LANG_menu_main</KEY>
-        <VALUE>Main</VALUE>
+        <KEY>LANG_when</KEY>
+        <VALUE>When:</VALUE>
     </ISTRING>
     <ISTRING>
-        <KEY>LANG_menu_authors</KEY>
-        <VALUE>Authors</VALUE>
+        <KEY>LANG_notes</KEY>
+        <VALUE>Notes:</VALUE>
     </ISTRING>
 	<ISTRING>
-        <KEY>LANG_menu_genres</KEY>
-        <VALUE>Genres</VALUE>
+        <KEY>LANG_apply</KEY>
+        <VALUE>Apply to all occurences?</VALUE>
     </ISTRING>
 	<ISTRING>
-        <KEY>LANG_menu_enter</KEY>
+        <KEY>LANG_update</KEY>
+        <VALUE>Update</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_delete</KEY>
+        <VALUE>Delete</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_close</KEY>
+        <VALUE>Close</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_details</KEY>
+        <VALUE>B.B.Details</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_page_not</KEY>
+        <VALUE>404 page not found</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_addnew</KEY>
+        <VALUE>Add new event</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_date</KEY>
+        <VALUE>Date:</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_who</KEY>
+        <VALUE>Who:</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_none</KEY>
+        <VALUE>none</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_weekly</KEY>
+        <VALUE>weekly</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_be_weekly</KEY>
+        <VALUE>be-weekly</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_monthly</KEY>
+        <VALUE>monthly</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_dur</KEY>
+        <VALUE>Duration(max 4 week)</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_addevent</KEY>
+        <VALUE>AddEvent</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_welcome</KEY>
+        <VALUE>Welcome,</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_exit</KEY>
+        <VALUE>Exit</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_email</KEY>
+        <VALUE>Email</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_pass</KEY>
+        <VALUE>Password</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_youremail</KEY>
+        <VALUE>Your email</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_enter</KEY>
         <VALUE>Enter</VALUE>
     </ISTRING>
-	<ISTRING>
-        <KEY>LANG_menu_quit</KEY>
-        <VALUE>Logout</VALUE>
+    <ISTRING>
+        <KEY>LANG_calendar</KEY>
+        <VALUE>Calendar</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_adm</KEY>
+        <VALUE>Admin</VALUE>
     </ISTRING>
 	<ISTRING>
-        <KEY>LANG_menu_cart</KEY>
-        <VALUE>Cart</VALUE>
+        <KEY>LANG_name</KEY>
+        <VALUE>Name</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_yourname</KEY>
+        <VALUE>Your name</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_passdet</KEY>
+        <VALUE>Password 3-15 chars</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_reg</KEY>
+        <VALUE>Registration</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_nameuser</KEY>
+        <VALUE>NameUser</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_emailuser</KEY>
+        <VALUE>EmailUser</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_upduser</KEY>
+        <VALUE>UpdateUser</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_deluser</KEY>
+        <VALUE>DeleteUser</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_adduser</KEY>
+        <VALUE>AddUser</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_bookit</KEY>
+        <VALUE>BookIt</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_list</KEY>
+        <VALUE>ListEmployee</VALUE>
     </ISTRING>
 </ISTRINGTABLE>

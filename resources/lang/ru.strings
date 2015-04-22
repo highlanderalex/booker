@@ -1,27 +1,147 @@
 <?xml version="1.0"?>
-<ISTRINGTABLE ID="joomla" LANG="ru">
+<ISTRINGTABLE ID="joomla" LANG="en">
     <ISTRING>
-        <KEY>LANG_menu_main</KEY>
-        <VALUE>Главная</VALUE>
+        <KEY>LANG_when</KEY>
+        <VALUE>Когда:</VALUE>
     </ISTRING>
     <ISTRING>
-        <KEY>LANG_menu_authors</KEY>
-        <VALUE>Авторы</VALUE>
+        <KEY>LANG_notes</KEY>
+        <VALUE>Заметки:</VALUE>
     </ISTRING>
 	<ISTRING>
-        <KEY>LANG_menu_genres</KEY>
-        <VALUE>Жанры</VALUE>
+        <KEY>LANG_apply</KEY>
+        <VALUE>Применить к рекурентным?</VALUE>
     </ISTRING>
 	<ISTRING>
-        <KEY>LANG_menu_enter</KEY>
-        <VALUE>Вход</VALUE>
+        <KEY>LANG_update</KEY>
+        <VALUE>Обновить</VALUE>
     </ISTRING>
 	<ISTRING>
-        <KEY>LANG_menu_quit</KEY>
-        <VALUE>Выход</VALUE>
+        <KEY>LANG_delete</KEY>
+        <VALUE>Удалить</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_close</KEY>
+        <VALUE>Закрыть</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_details</KEY>
+        <VALUE>B.B.Детально</VALUE>
     </ISTRING>
 	<ISTRING>
-        <KEY>LANG_menu_cart</KEY>
-        <VALUE>Корзина</VALUE>
+        <KEY>LANG_page_not</KEY>
+        <VALUE>404 страница не найдена</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_addnew</KEY>
+        <VALUE>Новое событие</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_date</KEY>
+        <VALUE>Дата:</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_who</KEY>
+        <VALUE>Кто:</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_none</KEY>
+        <VALUE>нет</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_weekly</KEY>
+        <VALUE>неделя</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_be_weekly</KEY>
+        <VALUE>2-недели</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_monthly</KEY>
+        <VALUE>месяц</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_dur</KEY>
+        <VALUE>Продолж(max 4 недели)</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_addevent</KEY>
+        <VALUE>Добавить</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_welcome</KEY>
+        <VALUE>Приветствуем,</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_exit</KEY>
+        <VALUE>Выйти</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_email</KEY>
+        <VALUE>Email</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_pass</KEY>
+        <VALUE>Пароль</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_youremail</KEY>
+        <VALUE>Ваш email</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_enter</KEY>
+        <VALUE>Войти</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_calendar</KEY>
+        <VALUE>Календарь</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_adm</KEY>
+        <VALUE>Админка</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_name</KEY>
+        <VALUE>Имя</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_yourname</KEY>
+        <VALUE>Ваше имя</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_passdet</KEY>
+        <VALUE>Пароль 3-15 cимв</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_reg</KEY>
+        <VALUE>Регистрация</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_nameuser</KEY>
+        <VALUE>Имя</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_emailuser</KEY>
+        <VALUE>Email</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_upduser</KEY>
+        <VALUE>Обновить</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_deluser</KEY>
+        <VALUE>Удалить</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_adduser</KEY>
+        <VALUE>Добавить</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_bookit</KEY>
+        <VALUE>Создать</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_list</KEY>
+        <VALUE>Список</VALUE>
     </ISTRING>
 </ISTRINGTABLE>

@@ -1,5 +1,5 @@
 <div style="color:#000;">
-<h4 align="center" style="color:#fff;">B.B. DETAILS</h4>
+<h4 align="center" style="color:#fff;"><?=$this->LANG_details;?></h4>
 <?php
     if ( '' == $this->success )
     {
@@ -8,15 +8,14 @@
 <form action="index.php?view=updateevent" method="post">
 <table align="center" width="400px" cellpadding="10" cellspacing="10" border="0">
 	<tr>
-		<td><span style="color:#fff;">Date:</span></td>
+		<td></td>
         <td>
 			<input type="hidden" name="idEvent" value="<?=(isset($_POST['idEvent'])) ? $_POST['idEvent'] : $this->item['idEvent'];?>">
-			<input id="datepicker" type="text" placeholder="" name="date" value="<?=(isset($_POST['date'])) ? $_POST['date'] : $this->item['date'];?>" size="40">
 			<br/>
 		</td>
 	</tr>
 	<tr>
-        <td><span style="color:#fff;">When:</span></td>
+    <td><span style="color:#fff;"><?=$this->LANG_when;?></span></td>
 		<td>
             <select name="startHour">
             <?php
@@ -83,16 +82,16 @@
 		</td>
 	</tr>
 	<tr>
-		<td><span style="color:#fff;">Notes:</span></td>
+    <td><span style="color:#fff;"><?=$this->LANG_notes;?></span></td>
         <td><input type="text" placeholder="" name="title" value="<?=(isset($_POST['title'])) ? $_POST['title'] : $this->item['title'];?>" size="40"><br/></td>
 	</tr>
 	<tr>
-		<td><span style="color:#fff;">Who:</span></td>
+    <td><span style="color:#fff;"><?=$this->LANG_who;?></span></td>
 		<td>
         <?php
             if ($_SESSION['statusUser'] == 0)
             {
-                ?>    <input type="text" placeholder="" name="name" value="<?=(isset($_POST['name'])) ? $_POST['name'] : $this->item['name'];?>" size="40" disabled><br/>
+                ?>    <input type="text" placeholder="" name="name" value="<?=(isset($_POST['name'])) ? $_POST['name'] : $this->item['name'];?>" size="40"><br/>
         <?php
             }
             else
@@ -114,7 +113,7 @@
 	</tr>
 	<tr>
 		<td align="right"><input type="checkbox"></td>
-		<td><span style="color:#fff;">Apply to all occurences?</span></td>
+        <td><span style="color:#fff;"><?=$this->LANG_apply;?></span></td>
 	</tr>
 </table>
 <br />
@@ -123,8 +122,8 @@
         ($this->flagDate && $_SESSION['statusUser'] == 1) )
     {
 ?>
-<p align="center"><input type="submit" class="btn btn-primary" value="Update" name="updateevent">&nbsp;&nbsp;
-<input type="submit" class="btn btn-primary" value="Delete" name="deleteevent"></p>
+    <p align="center"><input type="submit" class="btn btn-primary" value="<?=$this->LANG_update;?>" name="updateevent">&nbsp;&nbsp;
+<input type="submit" class="btn btn-primary" value="<?=$this->LANG_delete;?> " name="deleteevent"></p>
 <?php
     }
 ?>
@@ -136,7 +135,7 @@
     {
 ?>
     <h6 align="center" style="color:#fff;"><?=$this->success?></h6>
-    <p align="center"><a href="" onclick="closeWin();return false;"><button class="btn btn-primary">Close</button></a></p>
+    <p align="center"><a href="" onclick="closeWin();return false;"><button class="btn btn-primary"><?=$this->LANG_close;?></button></a></p>
 <?php
     }
 ?>

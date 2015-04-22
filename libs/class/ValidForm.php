@@ -77,6 +77,16 @@
                         $this->error .= "Empty notes<br />";
                     }  
                 }
+
+
+                if ( 'date' == $key )
+                {
+                    $val = trim(htmlspecialchars($val));
+                    if (empty($val))
+                    {
+                        $this->error .= "Empty date<br />";
+                    }  
+                }
             }
             if (isset($this->arr['rec']))
             {

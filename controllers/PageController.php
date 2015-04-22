@@ -9,11 +9,11 @@
             $this->view = new View();
 			date_default_timezone_set(TIMEZONE);
 			setLangSession();
-			/*$translate = new Language($_SESSION['lang']);
+			$translate = new Language($_SESSION['lang']);
 			foreach($translate->getTranslate() as $key=>$val)
 			{
 				$this->view->$key = $translate->getLang($key);
-			}*/
+			}
 		}
 		
 		public function index()
