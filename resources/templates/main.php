@@ -12,6 +12,16 @@
 	<title>Calendar</title>
 </head>
 <body>
+	<div id="lang">
+		<form action="" method="post">
+			<input type="hidden" name="lang" value="ru" />
+			<input type="submit" name="change_lang" value="RU"  <?=($_SESSION['lang']=='ru') ? "class='lang-active'" : "";?> />
+		</form>
+		<form action="" method="post">
+			<input type="hidden" name="lang" value="en" />
+			<input type="submit" name="change_lang" value="EN" <?=($_SESSION['lang']=='en') ? "class='lang-active'" : "";?> />
+		</form>   
+	</div>
 	<table align="center" width="980" cellpadding="0" cellspacing="0" border="0" id="main-table">
 	<tr>
         <td id="menu">

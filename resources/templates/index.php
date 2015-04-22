@@ -23,7 +23,7 @@
 	</div>
 	
 	<div style="float:left;margin-left:10px;">
-<a href="javascript://" onclick="_open( 'index.php?view=addevent', 500 , 400 );"style="text-decoration:none"><button class="btn btn-primary">BookIt</button></a>&nbsp;
+<a href="javascript://" onclick="_open( 'index.php?view=addevent', 500 , 450 );"style="text-decoration:none"><button class="btn btn-primary">BookIt</button></a>&nbsp;
 <?php
     if ($_SESSION['statusUser'] == 1)
     {

@@ -100,19 +100,45 @@
                 }
             }
 
-            if (isset($this->arr['startHour']) && isset($this->arr['startMin']))
+            if (isset($this->arr['startHour']) && 'AM' == $this->arr['typestart']  )
             {
                 $this->arr['startTime'] = $this->arr['startHour'] . ':' . $this->arr['startMin'];
+			}
+			
+			if (isset($this->arr['endHour']) && 'AM' == $this->arr['typeend']  )
+            {
                 $this->arr['endTime'] = $this->arr['endHour'] . ':' . $this->arr['endMin'];
-                //echo date('g:i', strtotime($this->arr['startTime']));  
-                //echo date('g:i', strtotime($this->arr['endTime']));  
-                if (strtotime($this->arr['startTime']) >= strtotime($this->arr['endTime']))
-                {
-                    $this->error .= "Error time<br />";
-                }
+			}
+			
+			if (isset($this->arr['startHour']) && 'PM' == $this->arr['typestart']  )
+            {
+				if ($this->arr['startHour'] > 11)
+				{
+					$this->error .= "Error start time<br />";
+				}
+				else
+				{
+					$this->arr['startTime'] = $this->arr['startHour'] + 12 . ':' . $this->arr['startMin'];
+				}
+			}
+			
+			if (isset($this->arr['endHour']) && 'PM' == $this->arr['typeend']  )
+            {
+				if ($this->arr['endHour'] > 11)
+				{
+					$this->error .= "Error end time<br />";
+				}
+				else
+				{
+					$this->arr['endTime'] = $this->arr['endHour'] + 12 . ':' . $this->arr['endMin'];
+				}
+			}
+                
+			if (isset($this->arr['endTime']) && isset($this->arr['startTime']) && strtotime($this->arr['startTime']) >= strtotime($this->arr['endTime']))
+            {
+                $this->error .= "Error time<br />";
             }
-
-            
+           
             if ($this->error == '')
 		    {
 			    return $this->arr;

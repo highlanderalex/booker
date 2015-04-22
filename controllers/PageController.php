@@ -8,8 +8,8 @@
 		{
             $this->view = new View();
 			date_default_timezone_set(TIMEZONE);
-			/*sessionRun();
-			$translate = new Language($_SESSION['lang']);
+			setLangSession();
+			/*$translate = new Language($_SESSION['lang']);
 			foreach($translate->getTranslate() as $key=>$val)
 			{
 				$this->view->$key = $translate->getLang($key);
@@ -18,55 +18,11 @@
 		
 		public function index()
 		{	
-			//date_default_timezone_set(TIMEZONE);
-			//session_destroy();
-			if ($_POST['mon'])
-			{
-				$_SESSION['type_week'] = $_POST['type_week']; 
-			}
-			if ($_POST['sun'])
-			{
-				$_SESSION['type_week'] = $_POST['type_week']; 
-			}
-			if (!isset($_SESSION['type_week']))
-			{
-				$_SESSION['type_week'] = 0; 
-			}
-			if (!isset($_SESSION['month']) && !isset($_SESSION['year']))
-			{
-				$_SESSION['month'] = date('m'); 
-				$_SESSION['year'] = date('y'); 
-			}
-
-			if ($_POST['prev'])
-			{
-				if($_SESSION['month'] == 1)
-				{
-					$_SESSION['month'] = 12;
-					$_SESSION['year'] -= 1;   
-				}
-				else
-				{
-				   $_SESSION['month'] -= 1;
-				} 
-			}
-			if ($_POST['next'])
-			{
-				if($_SESSION['month'] == 12)
-				{
-					$_SESSION['month'] = 1;
-					$_SESSION['year'] += 1;    
-				}
-				else
-				{
-					$_SESSION['month'] += 1;
-				} 
-            }
+			setParamSession();
             $rooms = new RoomController();
             $this->view->linkRooms = $rooms->getRooms();
             if (isset($_GET['idRoom']))
             {
-                //check id
                 $id = $_GET['idRoom'];
                 if (checkId($id))
                 {
@@ -271,26 +227,145 @@
 				$data = $form->validData();
                 if (is_array($data))
                 {
-                    $newevent = new EventController();
+                    $event = new EventController();
                     $data['idRoom'] = $_SESSION['idRoom'];
-                    $newevent->addNewEvent($data);
-                    $this->view->success = 'Event success add';
+					if ( 0 == $_SESSION['statusUser'] )
+					{
+						$data['idUser'] = $_SESSION['idUser'];
+					}
+                    
+					if ( '0' == $data['rec'] )
+					{
+						$item = $event->getEventsByDate($data['date'], $data['idRoom']);
+						if (empty($item))
+						{
+							$event->addNewEvent($data);
+							$this->view->success = 'Event success add';
+						}
+						else
+						{
+							foreach($item as $e)
+							{
+								$flag = false;
+								if (strtotime($data['endTime']) <= strtotime($e['startTime']) || 
+									strtotime($data['startTime']) >= strtotime($e['endTime']))
+								{
+									$flag = true;
+								}
+								if (!$flag) break;
+							}
+							if (!$flag)
+							{
+								$this->view->error = 'Time is taken this day';
+							}
+							else
+							{
+								$event->addNewEvent($data);
+								$this->view->success = 'Event success add';
+							}
+						}
+					}
+					
+					if ( '1' == $data['rec'] )
+					{
+						if($this->setOccEvent($data, 7, $event))
+						{
+							$this->view->success = 'All events success add';
+						}
+						else
+						{
+							$this->view->error = 'Time is taken this day';
+						}
+					}
+					
+					if ( '2' == $data['rec'] )
+					{
+						if($this->setOccEvent($data, 14, $event))
+						{
+							$this->view->success = 'All events success add';
+						}
+						else
+						{
+							$this->view->error = 'Time is taken this day';
+						}
+					}
+					if ( '3' == $data['rec'] )
+					{
+						if($this->setOccEvent($data, 28, $event))
+						{
+							$this->view->success = 'All events success add';
+						}
+						else
+						{
+							$this->view->error = 'Time is taken this day';
+						}
+					} 
                 }
                 else
                 {
                     $this->view->error = $data;
-                    $employees = new UserController();
-			        $this->view->users = $employees->getUsers();
-			        $this->view->item = $employees->getUser($_SESSION['idUser']);
                 }
             }
-            else
-            {
-                $employees = new UserController();
-			    $this->view->users = $employees->getUsers();
-			    $this->view->item = $employees->getUser($_SESSION['idUser']);
-            }
+            
+			$employees = new UserController();
+			$this->view->users = $employees->getUsers();
+			$this->view->item = $employees->getUser($_SESSION['idUser']);
 			$this->view->render('addevent');
+		}
+		
+		private function setOccEvent($data, $d, $event)
+		{
+			for( $i = 0; $i <= $data['num']; $i++)
+			{
+				$flag = true;
+				$str = strtotime($data['date']);
+				$our['date'] = date('Y-m-d',($str+86400*$d*$i));
+				$item = $event->getEventsByDate($our['date'], $data['idRoom']);
+				if (empty($item))
+				{
+					$flag = false;
+					continue;
+				}
+				else
+				{
+					foreach($item as $e)
+					{
+						$flag = true;
+						if (strtotime($data['endTime']) <= strtotime($e['startTime']) || 
+							strtotime($data['startTime']) >= strtotime($e['endTime']))
+						{
+							$flag = false;
+						}
+						if (!$flag) 
+						{
+							continue;
+						}
+						else
+						{
+							break;
+						}
+					}
+					if ($flag) break;
+				}
+			}
+			if($flag)
+			{
+				return false;
+			}
+			else
+			{
+				$event->addNewEvent($data);
+				$data['idPar'] = $event->getLastId();
+				$startdate = $data['date'];
+				for( $i = 1; $i <= $data['num']; $i++)
+				{
+					$str = strtotime($startdate);
+					$data['date'] = date('Y-m-d',($str+86400*$d*$i));
+					$event->addNewEvent($data);
+				}
+				return true;
+			}
+						
 		}
     }
 

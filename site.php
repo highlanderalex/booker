@@ -22,11 +22,11 @@
 <div id="lang">
     <form action="" method="post">
         <input type="hidden" name="lang" value="ru" />
-        <input type="submit" name="change_lang" value="RU"  <? if ($_SESSION['lang']=='ru') echo "class='lang-active'";?> />
+        <input type="submit" name="change_lang" value="RU"  <?=($_SESSION['lang']=='ru') ? "class='lang-active'" : "";?> />
     </form>
     <form action="" method="post">
         <input type="hidden" name="lang" value="en" />
-        <input type="submit" name="change_lang" value="EN" <? if ($_SESSION['lang']=='en') echo "class='lang-active'";?> />
+        <input type="submit" name="change_lang" value="EN" <?=($_SESSION['lang']=='en') ? "class='lang-active'" : "";?> />
     </form>   
 </div>
 

@@ -50,10 +50,22 @@
             $res = $this->model->returnEvents($idRoom);
             return $res;
         }
+		
+		public function getEventsByDate($date, $idRoom)
+		{
+			$res = $this->model->returnEventsByDate($date, $idRoom);
+            return $res;
+		}
         
         public function getEvent($id)
         {
             $res = $this->model->returnEvent($id);
+            return $res;
+        }
+		
+		public function getLastId()
+        {
+            $res = $this->model->returnLastId();
             return $res;
         }
     }

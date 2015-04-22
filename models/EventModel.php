@@ -39,6 +39,19 @@
 			$res = $this->inst->dbResultToArray($res);
             return $res; 
         }
+		
+		public function returnEventsByDate($date, $idRoom)
+        {
+			$arr['where'] = $date;
+			$arr['and'] = $idRoom;
+            $res = $this->inst->Select('*')
+						      ->From('b_events')
+							  ->Where('date=')
+							  ->I('idRoom=')
+							  ->Execute($arr);
+			$res = $this->inst->dbResultToArray($res);
+            return $res; 
+        }
         
         public function returnEvent($id)
         {
@@ -81,6 +94,10 @@
             $arr['startTime'] = $data['startTime'];
             $arr['endTime'] = $data['endTime'];
             $arr['date'] = $data['date'];
+			if (isset($data['idPar']))
+			{
+				$arr['idPar'] = $data['idPar'];
+			}
 			$res = $this->inst->Insert('b_events')
 						      ->Fields($arr)
 							  ->Values($arr)
