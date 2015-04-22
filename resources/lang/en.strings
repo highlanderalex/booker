@@ -144,4 +144,8 @@
         <KEY>LANG_list</KEY>
         <VALUE>ListEmployee</VALUE>
     </ISTRING>
+	<ISTRING>
+        <KEY>LANG_rec_event</KEY>
+        <VALUE>Is this to be recurent event?</VALUE>
+    </ISTRING>
 </ISTRINGTABLE>

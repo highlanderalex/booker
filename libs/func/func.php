@@ -57,7 +57,8 @@
 			$calendar = '<div style="width:800px;margin:0 auto;"><table cellpadding="0" cellspacing="0" class="calendar">';
 			if ($type)
 			{
-				$headings = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday', 'Sunday');
+				$headEn = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday', 'Sunday');
+				$headRu = array('Пон','Вт','Ср','Чт','Пят','Суб', 'Вс');
 				$running_day = date('w',mktime(0,0,0,$month,1,$year));
 				if($running_day == 0)
 				{
@@ -70,8 +71,17 @@
 			}
 			else
 			{
-				$headings = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
+				$headEn = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
+				$headRu = array('Вс', 'Пон','Вт','Ср','Чт','Пят','Суб');
 				$running_day = date('w',mktime(0,0,0,$month,1,$year));
+			}
+			if($_SESSION['lang'] == 'ru')
+			{
+				$headings = $headRu;
+			}
+			else
+			{
+				$headings = $headEn;
 			}
 			$calendar.= '<tr class="calendar-row"><td class="calendar-day-head">'.implode('</td><td class="calendar-day-head">',$headings).'</td></tr>';
 			$days_in_month = date('t',mktime(0,0,0,$month,1,$year));
@@ -161,7 +171,7 @@
 			}
 			if (!isset($_SESSION['month']) && !isset($_SESSION['year']))
 			{
-				$_SESSION['month'] = date('m'); 
+				$_SESSION['month'] = date('n'); 
 				$_SESSION['year'] = date('y'); 
 			}
 
@@ -189,6 +199,27 @@
 					$_SESSION['month'] += 1;
 				} 
             }
+			if ($_SESSION['lang'] == 'ru')
+			{
+				$rumonth = array('1' => 'Январь', 
+								 '2' => 'Февраль',
+								 '3' => 'Март',
+								 '4' => 'Апрель',
+								 '5' => 'Май',
+								 '6' => 'Июнь', 
+								 '7' => 'Июль',
+								 '8' => 'Август',
+								 '9' => 'Сентябрь',
+								 '10' => 'Октябрь',
+								 '11' => 'Ноябрь',
+								 '12' => 'Декабрь');
+				$_SESSION['namemonth'] = $rumonth[$_SESSION['month']];
+			}
+			else
+			{
+				$_SESSION['namemonth'] = date('F', mktime(0,0,0, $_SESSION['month']));
+			}
+			$_SESSION['fullyear'] = date('Y', mktime(0,0,0, $_SESSION['month'], 1, $_SESSION['year']));
 		}
 	
 	

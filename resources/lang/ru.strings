@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ISTRINGTABLE ID="joomla" LANG="en">
+<ISTRINGTABLE ID="joomla" LANG="ru">
     <ISTRING>
         <KEY>LANG_when</KEY>
         <VALUE>Когда:</VALUE>
@@ -143,5 +143,9 @@
 	<ISTRING>
         <KEY>LANG_list</KEY>
         <VALUE>Список</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_rec_event</KEY>
+        <VALUE>Повторять событие?</VALUE>
     </ISTRING>
 </ISTRINGTABLE>

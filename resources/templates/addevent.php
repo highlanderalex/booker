@@ -111,7 +111,7 @@
 	<tr>
 		<td></td>
 		<td>
-			<span style="color:#fff;">Is this to be recurent event?</span><br />
+			<span style="color:#fff;"><?=$this->LANG_rec_event;?></span><br />
             <input type="radio" name="rec" value="0" checked> <span style="color:#fff;"><?=$this->LANG_none?></span><br />
             <input type="radio" name="rec" value="1" <?=($_POST['rec'] == '1') ? 'checked' : ''?>> <span style="color:#fff;"><?=$this->LANG_weekly;?></span><br />
             <input type="radio" name="rec" value="2" <?=($_POST['rec'] == '2') ? 'checked' : ''?>> <span style="color:#fff;"><?=$this->LANG_be_weekly;?></span><br />

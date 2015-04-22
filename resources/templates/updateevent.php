@@ -11,6 +11,10 @@
 		<td></td>
         <td>
 			<input type="hidden" name="idEvent" value="<?=(isset($_POST['idEvent'])) ? $_POST['idEvent'] : $this->item['idEvent'];?>">
+			<input type="hidden" name="name" value="<?=(isset($_POST['name'])) ? $_POST['name'] : $this->item['name'];?>">
+			<input type="hidden" name="date" value="<?=(isset($_POST['date'])) ? $_POST['date'] : $this->item['date'];?>">
+			<input type="hidden" name="iUser" value="<?=(isset($_POST['iUser'])) ? $_POST['iUser'] : $this->item['idUser'];?>">
+			<input type="hidden" name="idPar" value="<?=(isset($_POST['idPar'])) ? $_POST['idPar'] : $this->item['idPar'];?>">
 			<br/>
 		</td>
 	</tr>
@@ -91,7 +95,8 @@
         <?php
             if ($_SESSION['statusUser'] == 0)
             {
-                ?>    <input type="text" placeholder="" name="name" value="<?=(isset($_POST['name'])) ? $_POST['name'] : $this->item['name'];?>" size="40"><br/>
+            ?>    
+			<span style="color:#fff;"><?=(isset($_POST['name'])) ? $_POST['name'] : $this->item['name'];?></span><br/>
         <?php
             }
             else
@@ -111,15 +116,24 @@
             ?>
 		</td>
 	</tr>
+	<?php
+		if ((($this->item['idPar'] || $_POST['idPar']) && ($_SESSION['statusUser'] == 1 || $_SESSION['idUser'] == $_POST['iUser'])) ||
+			(($this->item['idPar'] || $_POST['idPar']) && ($_SESSION['statusUser'] == 1 || $_SESSION['idUser'] == $this->item['idUser'])))
+		{
+	?>
 	<tr>
-		<td align="right"><input type="checkbox"></td>
+		<td align="right"><input type="checkbox" name="rec" value="1" <?=($_POST['rec']) ? 'checked' : '';?>></td>
         <td><span style="color:#fff;"><?=$this->LANG_apply;?></span></td>
 	</tr>
+	<?php
+	}
+	?>
 </table>
 <br />
 <?php
-    if ((($this->flagDate && $_SESSION['idUser'] == $this->item['idUser']) || ($this->flagDate && isset($_POST['idUser']))) ||
-        ($this->flagDate && $_SESSION['statusUser'] == 1) )
+	if(($this->item['date'] >= date('Y-m-d') || $_POST['date'] >= date('Y-m-d')) &&
+		($_SESSION['idUser'] == $this->item['idUser'] || $_SESSION['idUser'] == $_POST['iUser']) ||
+		((($this->item['date'] >= date('Y-m-d') || $_POST['date'] >= date('Y-m-d')) && ($_SESSION['statusUser'] == 1))))
     {
 ?>
     <p align="center"><input type="submit" class="btn btn-primary" value="<?=$this->LANG_update;?>" name="updateevent">&nbsp;&nbsp;

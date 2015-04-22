@@ -11,7 +11,7 @@
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
 	<meta name="title" content="" />
-    <title><?=($view=='updateevent') ? $this->item['startTime'] . '-' .$this->item['endTime'] : 'NewEvent'?></title>
+    <title><?=($view=='updateevent') ? 'EditEvent' : 'NewEvent'?></title>
 </head>
 <body bgcolor="#062134">
 	<? require_once ('resources/templates/'. $view. '.php');?>

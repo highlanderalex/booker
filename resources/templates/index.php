@@ -15,7 +15,7 @@
 		<input type="submit" name="prev" value="<<" class="btn btn-default">
 	   </form>
 	</div>
-    <div style="float:left; font-size:1.8em;margin-left:10px;margin-right:10px;"><?=date('F', mktime(0,0,0, $_SESSION['month'])) . '-' . date('Y', mktime(0,0,0, $_SESSION['month'], 1, $_SESSION['year']));?></div>
+    <div style="float:left; font-size:1.8em;margin-left:10px;margin-right:10px;"><?=$_SESSION['namemonth'] . '-' . $_SESSION['fullyear'];?></div>
 	<div style="float:left;">
 		<form action="index.php?view=index" method="post">
 		<input type="submit" name="next" value=">>" class="btn btn-default">

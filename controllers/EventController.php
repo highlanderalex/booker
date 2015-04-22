@@ -63,6 +63,24 @@
             return $res;
         }
 		
+		public function getRecEvents($idPar)
+        {
+            $res = $this->model->returnRecEvents($idPar);
+            return $res;
+        }
+		
+		public function updateNewEvent($id)
+        {
+            $res = $this->model->updateNewEvent($id);
+            return $res;
+        }
+		
+		public function removeEvent($id)
+        {
+            $res = $this->model->deleteEvent($id);
+            return $res;
+        }
+		
 		public function getLastId()
         {
             $res = $this->model->returnLastId();

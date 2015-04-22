@@ -136,11 +136,6 @@
 			}
 			$this->view->render('registration');
 		}
-		public function successreg()
-		{
-			$this->view->msg = 'Вы упешно зарегистрированы';
-			$this->view->render('successreg');
-		}
 		
 		public function logout()
 		{
@@ -187,6 +182,7 @@
 		
 		public function updateevent()
 		{
+			$event = new EventController();
 			if (isset($_POST['updateevent']))
 			{
 				$this->view->error = 'Update';
@@ -194,25 +190,32 @@
 			
 			if (isset($_POST['deleteevent']))
 			{
-				$this->view->error = 'Delete';
+				if (isset($_POST['rec']) && $_POST['rec'])
+				{
+					$event->removeEvent($_POST['idEvent']);
+					$recevents = $event->getRecEvents($_POST['idPar']);
+					foreach($recevents as $item)
+					{
+						if (strtotime($item['date']) > strtotime($_POST['date']))
+						{
+							$event->removeEvent($item['idEvent']);
+						}
+					}
+				}
+				else
+				{
+					$event->removeEvent($_POST['idEvent']);
+				}
+				$this->view->success = 'Delete was success';
             }
             $id = $_GET['id'];
-            $event = new EventController();
             $this->view->item = $event->getEvent($id);
             $this->view->item['startTime'] = substr($this->view->item['startTime'], 0, -3);
             $this->view->item['startHour'] = substr($this->view->item['startTime'], 0, -3);
-            $this->view->item['starMin'] = substr($this->view->item['startTime'], 3);
+            $this->view->item['startMin'] = substr($this->view->item['startTime'], 3);
             $this->view->item['endTime'] = substr($this->view->item['endTime'], 0, -3);
             $this->view->item['endHour'] = substr($this->view->item['endTime'], 0, -3);
             $this->view->item['endMin'] = substr($this->view->item['endTime'], 3);
-            if ($this->view->item['date'] >= date('Y-m-d'))
-            {
-                $this->view->flagDate = true;
-            }
-            else
-            {
-                $this->view->flagDate = false;
-            }
             $employees = new UserController();
 			$this->view->users = $employees->getUsers();
 			$this->view->render('updateevent');
@@ -356,6 +359,7 @@
 			{
 				$event->addNewEvent($data);
 				$data['idPar'] = $event->getLastId();
+				$event->updateNewEvent($data['idPar']);
 				$startdate = $data['date'];
 				for( $i = 1; $i <= $data['num']; $i++)
 				{

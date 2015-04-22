@@ -56,13 +56,24 @@
         public function returnEvent($id)
         {
 			$arr['where'] = $id;
-            $res = $this->inst->Select('e.idEvent, e.date, e.startTime, e.endTime, e.title, e.idUser, u.name')
+            $res = $this->inst->Select('e.idEvent, e.date, e.startTime, e.endTime, e.title, e.idUser, u.name, e.idPar')
                               ->From('b_events e')
                               ->Join('b_employees u')
                               ->On('u.idUser=e.idUser')
 							  ->Where('idEvent=')
 							  ->Execute($arr);
 			$res = $this->inst->dbLineArray($res);
+            return $res; 
+        }
+		
+		public function returnRecEvents($idPar)
+        {
+			$arr['where'] = $idPar;
+            $res = $this->inst->Select('idEvent, date, idPar')
+                              ->From('b_events')
+							  ->Where('idPar=')
+							  ->Execute($arr);
+			$res = $this->inst->dbResultToArray($res);
             return $res; 
         }
 		
@@ -102,6 +113,27 @@
 						      ->Fields($arr)
 							  ->Values($arr)
 							  ->Execute();
+            return $res;
+        }
+		
+		public function updateNewEvent($id)
+        {
+            $arr['where'] = $id;
+			$res = $this->inst->Update('b_events')
+						      ->Set('idPar=' . $id)
+							  ->Where('idEvent=')
+							  ->Execute($arr);
+            return $res;
+        }
+		
+		public function deleteEvent($id)
+        {
+            $arr['where'] = $id;
+			$res = $this->inst->Delete()
+						      ->From('b_events')
+							  ->Where('idEvent=')
+							  ->Limit(1)
+							  ->Execute($arr);
             return $res;
         }
     }
