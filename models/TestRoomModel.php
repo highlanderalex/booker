@@ -1,7 +1,7 @@
 <?php
-    include 'UserModel.php';
+    include 'RoomModel.php';
     
-    class TestUserModel extends PHPUnit_Framework_TestCase
+    class TestRoomModel extends PHPUnit_Framework_TestCase
     {
         public function testreturnEmail()
         {

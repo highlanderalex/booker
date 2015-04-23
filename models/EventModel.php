@@ -2,13 +2,22 @@
 
 	require_once ('DB.php');
     
-    /* Class OrderModel for orders table
+    /* Class EventModel
         * *
         * *
-        * * @method construct: Create database connection
-        * * @method returnOrders: Return assoc array of user orders
-        * * @method returnLastId: Retutn val of last insert id
-        * * @method returninsertOrder: Insert new order into orders
+        * * @method construct: Create object model
+        * * @method insertNewEvent: Return count of change rows
+		* * @method returnEvents: Return assoc array of events by room
+		* * @method returnEventsByDate: Return assoc array of events by room and date
+		* * @method returnEvent: Return assoc array of event by id
+		* * @method returnEventsByDateRoom: Return assoc array of events by room and date
+		* * @method returnRecEventsByDate: Return assoc array of rec events
+		* * @method returnRecEvents: Return assoc array of rec events
+		* * @method updateNewEvent: Return count of change rows
+		* * @method updateEvent: Return count of change rows
+		* * @method updateRecEvents: Return count of change rows
+		* * @method deleteEvent: Return count of change rows
+		* * @method returnLastId: Return int last id
         * */
 
     class EventModel 
@@ -20,12 +29,12 @@
 			$this->inst = DB::run();
 		}
       
-    /* returnOrders method
-        * *
-        * *
-        * * @params id: val id user
-        * * @return: Retutn assoc array of user orders
-        * */
+		/* returnEvents method
+			* *
+			* *
+			* * @params int: value int idRoom
+			* * @return: Return assoc array of events by room
+			* */
 
 		public function returnEvents($idRoom)
         {
@@ -40,6 +49,13 @@
             return $res; 
         }
 		
+		/* returnEventsByDate method
+			* *
+			* *
+			* * @params string, int: value string date, int idRoom
+			* * @return: Return assoc array of events
+			* */
+			
 		public function returnEventsByDate($date, $idRoom)
         {
 			$arr['where'] = $date;
@@ -53,7 +69,13 @@
             return $res; 
         }
 
-
+		/* returnEventsByDateRoom method
+			* *
+			* *
+			* * @params array, int: value array data, int idRoom
+			* * @return: Return assoc array of events
+			* */
+			
 		public function returnEventsByDateRoom($date, $idRoom)
         {
 			$arr['where'] = $date;
@@ -67,6 +89,13 @@
             return $res;
         } 
         
+		/* returnRecEventsByDate method
+			* *
+			* *
+			* * @params array: value array data
+			* * @return: Return assoc array of events
+			* */
+			
         public function returnRecEventsDate($data)
         {
 			$arr['where'] = $data['idPar'];
@@ -80,6 +109,13 @@
             return $res;
         }
         
+		/* returnEvent method
+			* *
+			* *
+			* * @params int: value int
+			* * @return: Return assoc array of event
+			* */
+			
         public function returnEvent($id)
         {
 			$arr['where'] = $id;
@@ -93,6 +129,13 @@
             return $res; 
         }
 		
+		/* returnRecEvents method
+			* *
+			* *
+			* * @params int: value int idPar
+			* * @return: Return assoc array of events
+			* */
+			
 		public function returnRecEvents($idPar)
         {
 			$arr['where'] = $idPar;
@@ -104,12 +147,12 @@
             return $res; 
         }
 		
-    /* returnLastId method
-        * *
-        * *
-        * * @params: No params
-        * * @return: Retutn last insert id
-        * */
+		/* returnLastId method
+			* *
+			* *
+			* * @params: No params
+			* * @return: Retutn last insert id
+			* */
 
 		public function returnLastId()
         {
@@ -117,12 +160,12 @@
             return $res; 
         }
 		
-    /* insertOrder method
-        * *
-        * *
-        * * @params $arr: val arr with key idUser id
-        * * @return: Return count of changes rows
-        * */
+		/* insertNewEvent method
+			* *
+			* *
+			* * @params array: value array data
+			* * @return: Retutn count of change rows
+			* */
 
 		public function insertNewEvent($data)
         {
@@ -143,6 +186,13 @@
             return $res;
         }
 		
+		/* updateNewEvent method
+			* *
+			* *
+			* * @params int: value int id
+			* * @return: Return count of change rows
+			* */
+			
 		public function updateNewEvent($id)
         {
             $arr['where'] = $id;
@@ -152,7 +202,14 @@
 							  ->Execute($arr);
             return $res;
         }
-
+		
+		/* updateEvent method
+			* *
+			* *
+			* * @params array: value array data
+			* * @return: Return count of change rows
+			* */
+			
 		public function updateEvent($data)
         {
             $arr['where'] = $data['idEvent'];
@@ -167,6 +224,13 @@
             return $res;
         }
         
+		/* updateRecEvents method
+			* *
+			* *
+			* * @params array: value array data
+			* * @return: Return count of change rows
+			* */
+			
         public function updateRecEvents($data)
         {
             $arr['where'] = $data['idPar'];
@@ -182,6 +246,13 @@
                               ->Execute($arr);
         }
 		
+		/* deleteEvent method
+			* *
+			* *
+			* * @params int: value int id
+			* * @return: Return count of change rows
+			* */
+			
 		public function deleteEvent($id)
         {
             $arr['where'] = $id;

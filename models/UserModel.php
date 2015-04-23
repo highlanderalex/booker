@@ -2,15 +2,18 @@
 
 	require_once ('DB.php');
     
-    /* Class UserModel for users table
+    /* Class UserModel
         * *
         * *
-        * * @method construct: Create database connection
-        * * @method returnEmail: valid on exist email into database
-        * * @method returnAuh: Retutn count 1 or 0 
+        * * @method construct: Create object model
+        * * @method returnkEmail: valid on exist email into database
+        * * @method returncheckAuth: Retutn count 1 or 0 
         * * @method returnDataUser: Retutn assoc array of data user
-        * * @method returnDiscont: Retutn val discont of data user
         * * @method insertDb: Insert database new user
+		* * @method updateUser:Return count of changes rows
+		* * @method deleteUser:Return count of changes rows
+		* * @method returnUser: Retutn assoc array of one user 
+		* * @method returnUsers: Retutn assoc array of all users 
         * */
 
     class UserModel 
@@ -22,12 +25,12 @@
 			$this->inst = DB::run();
 		}
 		
-    /* returnEmail method
-        * *
-        * *
-        * * @params email: val email
-        * * @return: Retutn 0 or 1
-        * */
+		/* returnEmail method
+			* *
+			* *
+			* * @params email: val email
+			* * @return: Retutn 0 or 1
+			* */
 
 		public function returnEmail($email)
         {
@@ -40,6 +43,13 @@
             return $res; 
         }
 		
+		/* returncheckData method
+			* *
+			* *
+			* * @params int, string: val int id, string email
+			* * @return: Retutn 0 or 1
+			* */
+			
 		public function returnCheckData($idUser, $email)
         {
 			$arr['where'] = $email;
@@ -53,12 +63,13 @@
             return $res; 
         }
 		
-    /* returnAuth method
-        * *
-        * *
-        * * @params data: array data with key email, password
-        * * @return: Retutn 0 or 1
-        * */
+		/* returnAuth method
+			* *
+			* *
+			* * @params data: array data with key email, password
+			* * @return: Retutn 0 or 1
+			* */
+			
 		public function returnAuth($data)
         {
 			$arr['where'] = $data['email'];
@@ -72,12 +83,13 @@
             return $res; 
         }
 		
-    /* returnDataUser method
-        * *
-        * *   
-        * * @params data: array data with key email, password
-        * * @return: Retutn assoc array of user 
-        * */
+		/* returnDataUser method
+			* *
+			* *   
+			* * @params data: array data with key email, password
+			* * @return: Retutn assoc array of user 
+			* */
+			
 		public function returnDataUser($data)
         {
 			$arr['where'] = $data['email'];
@@ -91,6 +103,13 @@
             return $res; 
         }
 		
+		/* returnUsers method
+			* *
+			* *   
+			* * @params: no params
+			* * @return: Retutn assoc array of all users 
+			* */
+			
 		public function returnUsers()
         {
             $res = $this->inst->Select('idUser, name, email')
@@ -102,6 +121,13 @@
             return $res; 
         }
 		
+		/* returnUser method
+			* *
+			* *   
+			* * @params int: int id param
+			* * @return: Retutn assoc array of one user 
+			* */
+			
 		public function returnUser($id)
         {
             $arr['where'] = $id;
@@ -113,31 +139,13 @@
             return $res; 
         }
 		
-    /* returnDiscont method
-        * *
-        * *
-        * * @params idUser: val idUser
-        * * @return: Retutn assoc array of discont user
-        * */
-		public function returnDiscont($iduser)
-        {
-			$arr['where'] = $iduser;
-            $res = $this->inst->Select('d.discont')
-						      ->From('users u')
-							  ->Join('discont d')
-							  ->On('u.idDiscont=d.id')
-							  ->Where('u.id=')
-							  ->Execute($arr);
-			$res = $this->inst->dbLineArray($res);
-            return $res; 
-        }
-		
-    /* insertDb method
-        * *
-        * *
-        * * @params data: array data with key email, password
-        * * @method insertDb:Return count of changes rows
-        * */
+		/* insertDb method
+			* *
+			* *
+			* * @params data: array data with key email, password
+			* * @method insertDb:Return count of changes rows
+			* */
+			
 		public function insertDb($data)
         {
 			$arr['name'] = $data['name'];
@@ -150,6 +158,13 @@
             return $res;
         }
 		
+		/* updateUser method
+			* *
+			* *
+			* * @params data: array data with key email, password
+			* * @method updateUser:Return count of changes rows
+			* */
+			
 		public function updateUser($data)
         {
 			$name = $data['name'];
@@ -162,6 +177,13 @@
             return $res;
         }
 		
+		/* deleteUser method
+			* *
+			* *
+			* * @params int: int idUser
+			* * @return:Return count of changes rows
+			* */
+			
 		public function deleteUser($idUser)
         {
 			$arr['where'] = $idUser;

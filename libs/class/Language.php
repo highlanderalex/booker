@@ -20,12 +20,12 @@
 			$this->loadData();
         }
 
-    /* loadData method
-        * *
-        * *
-        * * @params: no param
-        * * @return: nothing
-        * */
+		/* loadData method
+			* *
+			* *
+			* * @params: no param
+			* * @return: nothing
+			* */
 
 		private function loadData()
 		{
@@ -37,24 +37,24 @@
 			}
 		}
 		
-    /* getLang method
-        * *
-        * *
-        * * @params key: val key
-        * * @return: Return value from data with key
-        * */
+		/* getLang method
+			* *
+			* *
+			* * @params key: val key
+			* * @return: Return value from data with key
+			* */
 
 		public function getLang($key)
 		{
 			return $this->data[$key];
 		}
 		
-    /* getTranslate method
-        * *
-        * *
-        * * @params:nothing
-        * * @return: Retutn assoc array of data
-        * */
+		/* getTranslate method
+			* *
+			* *
+			* * @params:nothing
+			* * @return: Retutn assoc array of data
+			* */
 
 		public function getTranslate()
 		{

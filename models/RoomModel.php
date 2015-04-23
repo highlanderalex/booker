@@ -2,11 +2,14 @@
 
     require_once ('DB.php');
 
-   /* Class AuthorModel for table of authors.
+   /* Class RoomModel
        * *
        * *
-       * * @method construct: Create connection database
-       * * @method returnAuthors: The return assoc array of authors or empty array
+       * * @method construct: Create object model
+       * * @method returnRooms: The return assoc array of Rooms
+	   * * @method checkIdRoom: Retutn int value 1 or 0
+	   * * @method returnDefaultRoom: Retutn assoc array of first room
+	   * * @method returnRoom: Retutn assoc array of one room
        * */
 
     class RoomModel 
@@ -18,11 +21,11 @@
 			$this->inst = DB::run();
         }
 
-        /* returnAuthors method
+        /* returnRooms method
             * *
             * *
             * * @param: no params
-            * * @return: Retutn assoc array of authors or empty
+            * * @return: Retutn assoc array of rooms
             * */
 
 		public function returnRooms()
@@ -34,6 +37,13 @@
             return $res; 
         }
         
+		/* returnDefaultRoom method
+            * *
+            * *
+            * * @param: no params
+            * * @return: Retutn assoc array of first room
+            * */
+			
         public function returnDefaultRoom()
         {
             $res = $this->inst->Select('idRoom, name')
@@ -46,6 +56,13 @@
             return $res; 
         }
         
+		/* returnRoom method
+            * *
+            * *
+            * * @param int: int id params
+            * * @return: Retutn assoc array of one room
+            * */
+			
         public function returnRoom($id)
         {
             $arr['where'] = $id;
@@ -56,7 +73,14 @@
 			$res = $this->inst->dbLineArray($res);
             return $res; 
         }
-
+		
+		/* checkIdRoom method
+            * *
+            * *
+            * * @param: int id params
+            * * @return: Retutn int value 1 or 0
+            * */
+			
         public function checkIdRoom($id)
         {
             $arr['where'] = $id;

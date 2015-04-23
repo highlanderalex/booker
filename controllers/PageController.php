@@ -1,5 +1,19 @@
 <?php
-    
+    /* Class PageController 
+       * *
+       * *
+       * * @method construct: Create object view start lang and translate
+       * * @method index: index page
+	   * * @method error: error page
+	   * * @method login: login page
+	   * * @method registration: registration page
+	   * * @method logout: logout page
+	   * * @method admin: admin page
+	   * * @method addevent: page for add new event
+	   * * @method updateevent: page for update delete event
+	   * * @method setOccEvent: Return bool for occurences events
+       * */
+	   
     class PageController 
 	{
 		private $view;
@@ -278,11 +292,6 @@
                 {
                     $this->view->error = $data;
                 }
-                
-                
-                
-                
-               // $this->view->error = 'Update';
 			}
 			
 			if (isset($_POST['deleteevent']))

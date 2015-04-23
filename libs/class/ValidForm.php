@@ -18,6 +18,13 @@
             $this->arr = $form;
         }
         
+		/* validData method
+            * *
+            * *
+            * * @param: no params
+            * * @return: Retutn assoc array or string
+            * */
+			
         public function validData()
 	    {	
 		

@@ -1,4 +1,11 @@
 <?php
+		/* __autoload function
+            * *
+            * *
+            * * @param string: param string name of class
+            * * @return: Retutn void
+            * */
+			
 		function __autoload($class)
 		{
 			if (file_exists(dirname(__FILE__) . '/../../controllers/'.$class.'.php') ) 
@@ -16,12 +23,26 @@
 				require_once (dirname(__FILE__) . '/../../views/'.$class.'.php');
 			}
 		}
-	
+		
+		/* redirect function
+            * *
+            * *
+            * * @param string: param string name of template
+            * * @return: Retutn void
+            * */
+			
 		function redirect($view)
 		{
 			header('Location: index.php?view=' . $view);
 		}
 		
+		/* checkId function
+            * *
+            * *
+            * * @param int: param int id
+            * * @return: Retutn bool
+            * */
+			
 		function checkId($id)
 		{
 			if( preg_match("/^[0-9]+$/",$id) && $id > 0 )
@@ -32,9 +53,15 @@
 			{
 				return false;
 			}
-			
 		}
-	
+		
+		/* setLangSession function
+            * *
+            * *
+            * * @param: no param
+            * * @return: Retutn void set SESSION lang
+            * */
+			
 		function setLangSession()
 		{
 			$_SESSION['lang'] = ($_SESSION['lang']) ? $_SESSION['lang'] : 'ru';
@@ -44,6 +71,13 @@
 			}
 		}
 		
+		/* sessionDestroy function
+            * *
+            * *
+            * * @param: no param
+            * * @return: Retutn void remove param SESSION
+            * */
+			
 		function sessionDestroy()
 		{
 			unset($_SESSION['id']);
@@ -52,6 +86,13 @@
 			unset($_SESSION['total_price']);
 		}
 		
+		/* drawCalendar function
+            * *
+            * *
+            * * @param int, int, int, array: param int month, int year, int type of week, assoc array of events
+            * * @return: Retutn string
+            * */
+			
 		function drawCalendar($month,$year, $type, $arr)
 		{
 			$calendar = '<div style="width:800px;margin:0 auto;"><table cellpadding="0" cellspacing="0" class="calendar">';
@@ -138,6 +179,13 @@
 			return $calendar;
 		}
 		
+		/* checkStatusUser function
+            * *
+            * *
+            * * @param: no param
+            * * @return: Retutn or redirect
+            * */
+			
 		function checkStatusUser()
 		{
 			if( 1 == $_SESSION['statusUser'] )
@@ -150,11 +198,25 @@
 			}
 		}
 		
+		/* hashPass function
+            * *
+            * *
+            * * @param string: param pass
+            * * @return: Retutn md5 pass
+            * */
+			
 		function hashPass($pass)
 		{
 			return md5($pass);
 		}
 		
+		/* setParamSession function
+            * *
+            * *
+            * * @param: no param
+            * * @return: Retutn void set SESSION param
+            * */
+			
 		function setParamSession()
 		{
 			if ($_POST['mon'])

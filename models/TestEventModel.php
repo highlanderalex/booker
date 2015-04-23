@@ -1,7 +1,7 @@
 <?php
-    include 'UserModel.php';
+    include 'EventModel.php';
     
-    class TestUserModel extends PHPUnit_Framework_TestCase
+    class TestEventModel extends PHPUnit_Framework_TestCase
     {
         public function testreturnEmail()
         {
