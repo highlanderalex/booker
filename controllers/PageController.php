@@ -182,15 +182,112 @@
 		
 		public function updateevent()
 		{
-			$event = new EventController();
+            $event = new EventController();
+            $this->view->success = '';
 			if (isset($_POST['updateevent']))
 			{
-				$this->view->error = 'Update';
+                $form = new ValidForm($_POST);
+				$data = $form->validData();
+                if (is_array($data))
+                {   $data['idUser'] = ($_SESSION['statusUser'] == 1) ? $_POST['idUser'] : $_SESSION['idUser'];
+                    $idRoom = $_SESSION['idRoom'];
+                    if (isset($_POST['rc']) && $_POST['rc'])
+                    {
+                        $eventRec = $event->getRecEventsByDate($data);
+                        foreach($eventRec as $item)
+                        {
+                            $data['date'] = $item['date'];
+                           // $data['idPar'] = $_POST['idPar'];
+                            $eventsByDate = $event->getEventsByDateRoom($data['date'], $idRoom);
+                            foreach($eventsByDate as $row)
+                            {
+                                $flag = false;
+                                if ($item['idEvent'] == $row['idEvent'])
+                                {
+                                    $flag = true;
+                                    continue;
+                                }
+                                if (strtotime($data['endTime']) <= strtotime($row['startTime']) ||
+                                    strtotime($data['startTime']) >= strtotime($row['endTime']))
+                                {
+                                    $flag = true;
+                                    continue;
+                                }
+                                if(!$flag)
+                                {
+                                    break;
+                                }
+                            }
+                            if (!$flag)
+                            {
+                              break;  
+                            }
+                        }
+                        if (!$flag)
+                        {
+                            $this->view->error = 'This time taken';
+                        }
+                        else
+                        {
+                            $event->updateRecEvents($data);
+                            $this->view->success = 'Events success update';
+                        }    
+                    }
+                    else
+                    {
+                        $eventsByDate = $event->getEventsByDateRoom($data['date'], $idRoom);
+                        if (empty($eventsByDate))
+                        {
+                            $event->updateEvent($data);
+                        }  
+                        else
+                        {
+                            foreach($eventsByDate as $item)
+                            {
+                                $flag = false;
+                                if ($item['idEvent'] == $data['idEvent'])
+                                {
+                                    $flag = true;
+                                    continue;
+                                }
+                                if (strtotime($data['endTime']) <= strtotime($item['startTime']) ||
+                                    strtotime($data['startTime']) >= strtotime($item['endTime']))
+                                {
+                                    $flag = true;
+                                    continue;
+                                }
+                                if (!$flag)
+                                {
+                                    break;
+                                }
+                            }
+                            if (!$flag)
+                            {
+                                $this->view->error = 'This time taken';
+                            }
+                            else
+                            {
+                                $event->updateEvent($data);
+                                $this->view->success = 'Event success update';
+                            }   
+                        }
+                    } 
+                
+                }
+                else
+                {
+                    $this->view->error = $data;
+                }
+                
+                
+                
+                
+               // $this->view->error = 'Update';
 			}
 			
 			if (isset($_POST['deleteevent']))
 			{
-				if (isset($_POST['rec']) && $_POST['rec'])
+				if (isset($_POST['rc']) && $_POST['rc'])
 				{
 					$event->removeEvent($_POST['idEvent']);
 					$recevents = $event->getRecEvents($_POST['idPar']);

@@ -122,7 +122,7 @@
 		{
 	?>
 	<tr>
-		<td align="right"><input type="checkbox" name="rec" value="1" <?=($_POST['rec']) ? 'checked' : '';?>></td>
+		<td align="right"><input type="checkbox" name="rc" value="1" <?=($_POST['rc']) ? 'checked' : '';?>></td>
         <td><span style="color:#fff;"><?=$this->LANG_apply;?></span></td>
 	</tr>
 	<?php

@@ -62,6 +62,18 @@
             $res = $this->model->returnEvent($id);
             return $res;
         }
+        
+        public function getEventsByDateRoom($data, $idRoom)
+        {
+            $res = $this->model->returnEventsByDateRoom($data, $idRoom);
+            return $res;
+        }
+        
+        public function getRecEventsByDate($data)
+        {
+            $res = $this->model->returnRecEventsDate($data);
+            return $res;
+        }
 		
 		public function getRecEvents($idPar)
         {
@@ -72,6 +84,18 @@
 		public function updateNewEvent($id)
         {
             $res = $this->model->updateNewEvent($id);
+            return $res;
+        }
+        
+        public function updateEvent($data)
+        {
+            $res = $this->model->updateEvent($data);
+            return $res;
+        }
+        
+        public function updateRecEvents($data)
+        {
+            $res = $this->model->updateRecEvents($data);
             return $res;
         }
 		

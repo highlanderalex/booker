@@ -52,6 +52,33 @@
 			$res = $this->inst->dbResultToArray($res);
             return $res; 
         }
+
+
+		public function returnEventsByDateRoom($date, $idRoom)
+        {
+			$arr['where'] = $date;
+			$arr['and'] = $idRoom;
+            $res = $this->inst->Select('*')
+						      ->From('b_events')
+							  ->Where('date=')
+							  ->I('idRoom=')
+							  ->Execute($arr);
+			$res = $this->inst->dbResultToArray($res);
+            return $res;
+        } 
+        
+        public function returnRecEventsDate($data)
+        {
+			$arr['where'] = $data['idPar'];
+			$arr['and'] = date('Y-m-d', strtotime($data['date']));
+            $res = $this->inst->Select('*')
+						      ->From('b_events')
+							  ->Where('idPar=')
+							  ->I('date>=')
+							  ->Execute($arr);
+			$res = $this->inst->dbResultToArray($res);
+            return $res;
+        }
         
         public function returnEvent($id)
         {
@@ -124,6 +151,35 @@
 							  ->Where('idEvent=')
 							  ->Execute($arr);
             return $res;
+        }
+
+		public function updateEvent($data)
+        {
+            $arr['where'] = $data['idEvent'];
+            $startTime = $data['startTime'];
+            $endTime = $data['endTime'];
+            $title = $data['title'];
+            $idUser = $data['idUser'];
+			$res = $this->inst->Update('b_events')
+						      ->Set("startTime='" . $startTime . "', endTime='" . $endTime . "', title='" . $title . "', idUser=" . $idUser)
+							  ->Where('idEvent=')
+							  ->Execute($arr);
+            return $res;
+        }
+        
+        public function updateRecEvents($data)
+        {
+            $arr['where'] = $data['idPar'];
+            $arr['and'] = date('Y-m-d',strtotime($data['date']));
+            $startTime = $data['startTime'];
+            $endTime = $data['endTime'];
+            $title = $data['title'];
+            $idUser = $data['idUser'];
+			$res = $this->inst->Update('b_events')
+						      ->Set("startTime='" . $startTime . "', endTime='" . $endTime . "', title='" . $title . "', idUser=" . $idUser)
+                              ->Where('idPar=')
+                              ->I('date>=')
+                              ->Execute($arr);
         }
 		
 		public function deleteEvent($id)
