@@ -3,39 +3,31 @@
     
     class TestRoomModel extends PHPUnit_Framework_TestCase
     {
-        public function testreturnEmail()
+        public function testreturnRooms()
         {
-            $user = new UserModel();
-            $email = 'alex@mail.ru';
-            $this->assertTrue(0==$user->returnEmail($email) 
-                                            || 1==$user->returnEmail($email));
+            $rooms = new RoomModel();
+            $this->assertTrue(array($rooms->returnRooms()) || empty($rooms->retrnRooms()));
         }
         
-        public function testreturnAuth()
+        public function testreturnDefaultRoom()
         {
-            $user = new UserModel();
-            $data['email']= 'alex@mail.ru';
-            $data['password']= md5('qwerty');
-            $this->assertTrue(0==$user->returnAuth($data) 
-                                            || 1==$user->returnAuth($data));
+            $room = new RoomModel();
+            $this->assertFalse(empty($room->returnDefaultRoom())); 
         }
         
-        public function testreturnDataUser()
+        public function testreturnRoom()
         {
-            $user = new UserModel();
-            $data['email']= 'alex@mail.ru';
-            $data['password']= md5('abcd');
-            $this->assertTrue(empty($user->returnDataUser($data))); 
+            $room = new RoomModel();
+            $id = 2;
+            $this->assertFalse(empty($room->returnRoom($id))); 
                                             
         }
        
-        public function testinsertDb()
+        public function testcheckIdRoom()
         {
-            $user = new UserModel();
-            $data['name'] = 'qqq';
-            $data['email'] = 'qqq@mail.ru';
-            $data['password'] = md5('qqq');
-            $this->assertTrue($user->insertDb($data) > 0);
+            $room = new RoomModel();
+            $id = 1;
+            $this->assertTrue($room->checkIdRoom($id) == 1);
         }          
     }
 

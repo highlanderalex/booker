@@ -15,7 +15,7 @@
         {
             $user = new UserModel();
             $data['email']= 'alex@mail.ru';
-            $data['password']= md5('qwerty');
+            $data['password']= 'qwerty';
             $this->assertTrue(0==$user->returnAuth($data) 
                                             || 1==$user->returnAuth($data));
         }
@@ -28,6 +28,20 @@
             $this->assertTrue(empty($user->returnDataUser($data))); 
                                             
         }
+        
+        public function testreturnUsers()
+        {
+            $users = new UserModel();
+            $this->assertFalse(empty($users->returnUsers())); 
+        }                 
+        
+        public function testreturnUser()
+        {
+            $user = new UserModel();
+            $id = 13; 
+            $this->assertTrue(is_array($user->returnUser($id))); 
+                                            
+        }
        
         public function testinsertDb()
         {
@@ -36,6 +50,22 @@
             $data['email'] = 'qqq@mail.ru';
             $data['password'] = md5('qqq');
             $this->assertTrue($user->insertDb($data) > 0);
+        }           
+        
+        public function testupdateUser()
+        {
+            $user = new UserModel();
+            $data['idUser'] = 17;
+            $data['name'] = 'gggg';
+            $data['email'] = 'gggg@mail.ru';
+            $this->assertTrue($user->updateUser($data) == 1);
+        }          
+        
+        public function testdeleteUser()
+        {
+            $user = new UserModel();
+            $id =17;
+            $this->assertTrue($user->deleteUser($id) == 1);
         }          
     }
 
