@@ -1,4 +1,4 @@
-<div style="width:700px;margin:0 auto;margin-top:30px;padding-bottom:10px;">
+<div style="width:800px;margin:0 auto;margin-top:30px;padding-bottom:10px;">
     <div style="float:left; font-size:1.8em;margin-left:10px;margin-right:10px;"><?= $_SESSION['nameRoom'];?></div>
     <div style="float:left;">
 		<form action="index.php?view=index" method="post">
@@ -8,6 +8,16 @@
     <div style="float:left;">
 		<form action="index.php?view=index" method="post">
 		<input type="hidden" name="type_week" value="0"><input type="submit" name="sun" value="Sun" class="btn btn-default">
+		</form>
+	</div>
+	<div style="float:left;">
+		<form action="index.php?view=index" method="post">
+		<input type="hidden" name="type_time" value="am"><input type="submit" name="am" value="AM" class="btn btn-default">
+	   </form>
+	</div>
+    <div style="float:left;">
+		<form action="index.php?view=index" method="post">
+		<input type="hidden" name="type_time" value="pm"><input type="submit" name="pm" value="PM" class="btn btn-default">
 		</form>
 	</div>
     <div style="float:left;">

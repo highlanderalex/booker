@@ -95,14 +95,31 @@
         <?php
             if ($_SESSION['statusUser'] == 0)
             {
+				if ($this->item['name'] == null)
+				{
+			?>
+					<span style="color:#fff;">Employee delete</span><br/>
+			<?php
+				}
+				else
+				{
             ?>    
-			<span style="color:#fff;"><?=(isset($_POST['name'])) ? $_POST['name'] : $this->item['name'];?></span><br/>
-        <?php
+					<span style="color:#fff;"><?=(isset($_POST['name'])) ? $_POST['name'] : $this->item['name'];?></span><br/>
+			<?php
+				}
             }
             else
             {
-        ?>
-            <select name="idUser">
+				if ($this->item['name'] == null && !isset($_POST['idUser']))
+				{
+			?>
+					<span style="color:#fff;">Employee delete</span><br/>
+			<?php
+				}
+				else
+				{
+			?>
+			<select name="idUser">
             <?php
                 foreach($this->users as $user):
             ?>
@@ -112,13 +129,18 @@
             ?>
             </select>
             <?php
+				}
             }
             ?>
 		</td>
 	</tr>
 	<?php
-		if ((($this->item['idPar'] || $_POST['idPar']) && ($_SESSION['statusUser'] == 1 || $_SESSION['idUser'] == $_POST['iUser'])) ||
-			(($this->item['idPar'] || $_POST['idPar']) && ($_SESSION['statusUser'] == 1 || $_SESSION['idUser'] == $this->item['idUser'])))
+		if ((($this->item['idPar'] || $_POST['idPar']) && 
+			(($_SESSION['statusUser'] == 1 || $_SESSION['idUser'] == $_POST['iUser']) && 
+			($this->item['date'] >= date('Y-m-d') || $_POST['date'] >= date('Y-m-d')))) ||
+			(($this->item['idPar'] || $_POST['idPar']) && 
+			(($_SESSION['statusUser'] == 1 || $_SESSION['idUser'] == $this->item['idUser']) && 
+			($this->item['date'] >= date('Y-m-d') || $_POST['date'] >= date('Y-m-d')))))
 		{
 	?>
 	<tr>

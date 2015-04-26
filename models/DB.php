@@ -164,6 +164,12 @@
 				return self::$instance;
 			}
 			
+			public static function Left()
+			{
+				self::$str .= ' LEFT';
+				return self::$instance;
+			}
+			
 			public static function Where($exp)
 			{
 				self::$str .= ' Where ' . $exp . ':where';

@@ -121,7 +121,8 @@
 			$arr['where'] = $id;
             $res = $this->inst->Select('e.idEvent, e.date, e.startTime, e.endTime, e.title, e.idUser, u.name, e.idPar')
                               ->From('b_events e')
-                              ->Join('b_employees u')
+                              ->Left()
+							  ->Join('b_employees u')
                               ->On('u.idUser=e.idUser')
 							  ->Where('idEvent=')
 							  ->Execute($arr);

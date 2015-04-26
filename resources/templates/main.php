@@ -12,19 +12,27 @@
     <title><?=$this->LANG_calendar;?></title>
 </head>
 <body>
-	<div id="lang">
-		<form action="" method="post">
-			<input type="hidden" name="lang" value="ru" />
-			<input type="submit" name="change_lang" value="RU"  <?=($_SESSION['lang']=='ru') ? "class='lang-active'" : "";?> />
-		</form>
-		<form action="" method="post">
-			<input type="hidden" name="lang" value="en" />
-			<input type="submit" name="change_lang" value="EN" <?=($_SESSION['lang']=='en') ? "class='lang-active'" : "";?> />
-		</form>   
-	</div>
 	<table align="center" width="980" cellpadding="0" cellspacing="0" border="0" id="main-table">
 	<tr>
-        <td id="menu">
+		<td align="right" width="770px">
+		<div id="lang">
+			<form action="" method="post">
+				<input type="hidden" name="lang" value="ru" />
+				<input type="submit" name="change_lang" value="RU"  <?=($_SESSION['lang']=='ru') ? "class='lang-active'" : "";?> />
+			</form>
+		</div>
+		</td>
+		<td align="right" width="30px">
+		<div id="lang">
+			<form action="" method="post">
+				<input type="hidden" name="lang" value="en" />
+				<input type="submit" name="change_lang" value="EN" <?=($_SESSION['lang']=='en') ? "class='lang-active'" : "";?> />
+			</form>   
+		</div>
+		</td>
+	</tr>
+	<tr>
+        <td id="menu" colspan="2">
         <?php
             if($_SESSION['idUser'])
             {
@@ -52,7 +60,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td id="content">
+		<td id="content" colspan="2">
 			<div style="min-height:600px;"><? require_once ('resources/templates/'. $view. '.php');?></div>
 			<div class="clear"></div>
 			<div id="bottom-menu">
@@ -61,9 +69,6 @@
 				</div>
 			</div>
 		</td>
-	</tr>
-	<tr>
-		<td></td>
 	</tr>
 </table>
 </body>

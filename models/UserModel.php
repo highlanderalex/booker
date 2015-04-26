@@ -192,9 +192,11 @@
 							  ->Where('idUser=')
 							  ->Limit(1)
 							  ->Execute($arr);
+			$arr['and'] = date('Y-m-d');
 			$res = $this->inst->Delete()
 						      ->From('b_events')
 							  ->Where('idUser=')
+							  ->I('date>=')
 							  ->Execute($arr);
             return $res; 
         }

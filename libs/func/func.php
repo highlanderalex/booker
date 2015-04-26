@@ -147,9 +147,37 @@
                     $curr = date('Y-m-d', mktime(0, 0, 0 , $month, $list_day, $year));
                     if($item['date'] == $curr)
                     {
-                        $calendar.= '<a href="javascript://" onclick="_open( \'index.php?view=updateevent&id=' . 
+                        if ($_SESSION['type_time'] == 'am')
+						{
+							$startTime = substr($item['startTime'], 0, -3);
+							$endTime = substr($item['endTime'], 0, -3);
+						}
+						else
+						{
+							$arrTime = explode(':', $item['startTime']);
+							if ($arrTime[0] > 11)
+							{
+								$startTime = $arrTime[0] - 12 . ':' . $arrTime[1] . 'PM';
+							}
+							else
+							{
+								$startTime = $arrTime[0] . ':' . $arrTime[1] . 'AM';
+							}
+							
+							$arrTime = explode(':', $item['endTime']);
+							if ($arrTime[0] > 11)
+							{
+								$endTime = $arrTime[0] - 12 . ':' . $arrTime[1] . 'PM';
+							}
+							else
+							{
+								$endTime = $arrTime[0] . ':' . $arrTime[1] . 'AM';
+							}
+							
+						}
+						$calendar.= '<a href="javascript://" onclick="_open( \'index.php?view=updateevent&id=' . 
 						$item['idEvent'] . '\', 500 , 300 );" style="color:#062134" title="' . $item['title'] . '">' . 
-						substr($item['startTime'], 0, -3) . '-' . substr($item['endTime'], 0, -3) . '</a><br />';
+						$startTime . '-' . $endTime . '</a><br />';
                     }
                 }
  				$calendar.= str_repeat('<p>&nbsp;</p>',2);
@@ -230,6 +258,18 @@
 			if (!isset($_SESSION['type_week']))
 			{
 				$_SESSION['type_week'] = 0; 
+			}
+			if ($_POST['am'])
+			{
+				$_SESSION['type_time'] = $_POST['type_time']; 
+			}
+			if ($_POST['pm'])
+			{
+				$_SESSION['type_time'] = $_POST['type_time']; 
+			}
+			if (!isset($_SESSION['type_time']))
+			{
+				$_SESSION['type_time'] = 'am'; 
 			}
 			if (!isset($_SESSION['month']) && !isset($_SESSION['year']))
 			{

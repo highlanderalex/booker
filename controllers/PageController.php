@@ -32,6 +32,10 @@
 		
 		public function index()
 		{	
+			if (!isset($_SESSION['idUser']))
+			{
+				redirect('login');
+			}
 			setParamSession();
             $rooms = new RoomController();
             $this->view->linkRooms = $rooms->getRooms();

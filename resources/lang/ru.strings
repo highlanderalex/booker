@@ -138,11 +138,11 @@
     </ISTRING>
 	<ISTRING>
         <KEY>LANG_bookit</KEY>
-        <VALUE>Создать</VALUE>
+        <VALUE>Забронировать</VALUE>
     </ISTRING>
 	<ISTRING>
         <KEY>LANG_list</KEY>
-        <VALUE>Список</VALUE>
+        <VALUE>Пользователи</VALUE>
     </ISTRING>
 	<ISTRING>
         <KEY>LANG_rec_event</KEY>
