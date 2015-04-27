@@ -214,9 +214,9 @@
                         $eventRec = $event->getRecEventsByDate($data);
                         foreach($eventRec as $item)
                         {
-                            $data['date'] = $item['date'];
+                            $data['currdate'] = $item['date'];
                            // $data['idPar'] = $_POST['idPar'];
-                            $eventsByDate = $event->getEventsByDateRoom($data['date'], $idRoom);
+                            $eventsByDate = $event->getEventsByDateRoom($data['currdate'], $idRoom);
                             foreach($eventsByDate as $row)
                             {
                                 $flag = false;

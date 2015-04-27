@@ -65,7 +65,7 @@
 			<div class="clear"></div>
 			<div id="bottom-menu">
 				<div align="center">
-					&copy; 2015 Design by AlexSoft
+					&copy; 2015 Design by highlanderalex
 				</div>
 			</div>
 		</td>
